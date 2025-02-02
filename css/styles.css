@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('your-background-image.jpg') no-repeat center center/cover;
+    background:
+            url('/views/layouts/background1.png') no-repeat center center/cover;
     height: 100vh; /* Full screen height */
     display: flex;
     flex-direction: column;
