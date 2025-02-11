@@ -1,3 +1,16 @@
+//slide out menu
+document.addEventListener("DOMContentLoaded", function() {
+    const menu = document.querySelector(".menu");
+    const toggleButton = document.querySelector(".menu-toggle");
+
+    toggleButton.addEventListener("click", function() {
+        menu.classList.toggle("open");
+    });
+});
+
+
+
+
 //this is connecting to the square api server
 
 const accessToken = "EAAAlw_UirsbUjXw7cB1VR0t-wbasHP9OnXevEmRZUWp_nWvL-ZyRn020T1yaN5E";  // Replace with your token
