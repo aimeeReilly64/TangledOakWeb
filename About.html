@@ -7,32 +7,88 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header>
-    <h1>Welcome to The Tangled Oak + Craft Collective</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="maker.html">Shop by Vendor</a></li>
-            this will be a drop-down and feature two pages Vendor A-M with a drop of all the vendors
-            and Vendor N-Z with a drop of all the vendors
-            <li><a href="workshops.html">Workshops</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Vendor Application</a></li>
-            <li><a href="vendor.html">Vendor Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <section id="hero">
-        <h2>Discover Handmade Treasures, Crafted with Heart</h2>
-        <p>Explore unique products from talented artisans and creators.</p>
-    </section>
-</main>
+<div class = "header">
+    <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/></a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="workshops.html" class="nav-link">Workshops</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <!-- Search Bar -->
+    <form class="search-bar">
+        <input type="text" placeholder="Search" id="search-input" />
+    </form>
+    <!-- Cart Icon -->
+    <a href="cart.html">
+        <img src="views/images/cart.png" height="40" width="auto"/>
+    </a>
+</div>
 
-<footer>
-    <p>&copy; 2024 The Tangled Oak + Craft Collective</p>
+<div class="sidebar">
+    <li><a href="index.html" class="side-nav-link">Home</a></li><br />
+    <li><a href="shop.html" class="side-nav-link">Shop</a></li><br />
+    <li><a href="maker.html" class="side-nav-link">Shop by Vendor</a></li><br />
+    <!-- Vendor A-M with a drop of all the vendors and Vendor N-Z with a drop of all the vendors -->
+    <!-- Vendors A-M -->
+    <li><a href="Shop.html" class="side-nav-link">Vendor A-M</a></li><br />
+    <!-- Vendors N-Z -->
+    <li><a href="Shop.html" class="side-nav-link">Vendor N-Z</a></li><br />
+    <li><a href="Shop.html" class="side-nav-link">Craft Supplies</a></li><br />
+    <li><a href="Shop.html" class="side-nav-link">DIY Projects</a></li><br />
+    <li><a href="workshops.html" class="side-nav-link">Workshops</a></li><br />
+    <li><a href="blog.html" class="side-nav-link">Blog</a></li><br />
+    <li><a href="About.html" class="side-nav-link">About Us</a></li><br />
+    <li><a href="ContactUs.html" class="side-nav-link">Contact</a></li><br />
+</div>
+<div class="main-content">
+    <!-- Hero Section -->
+    <div class="context-box">
+        <h2>About Us</h2>
+        <p>Locally made artisanal goods, unique crafts, and one-of-a-kind finds.<br /><br /></p>
+
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section social-media">
+            <h2>Follow Us</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61556577491923" aria-label="Follow us on Facebook">
+                    <img src="views/images/facebook.png" alt="Facebook Logo"/>
+                </a>
+                <a href="https://www.instagram.com/tangledoakcraft/" aria-label="Follow us on Instagram">
+                    <img src="views/images/instagram.png" alt="Instagram Logo"/>
+                </a>
+                <a href="https://www.pinterest.com/tangledoakcraft" aria-label="Follow us on Pinterest">
+                    <img src="views/images/pinterest.png" alt="Pinterest Logo"/>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/shipping-policy">Shipping & Returns</a></li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms & Conditions</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p style="font-size: 8px">&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
+    </div>
 </footer>
 <script src="js/scripts.js"></script>
 </body>
