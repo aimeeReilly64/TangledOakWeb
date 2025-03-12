@@ -7,122 +7,149 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class = "header">
-        <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/></a>
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="shop.html" class="nav-link">Shop</a>
-        <a href="workshops.html" class="nav-link">Workshops</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+
+<!-- Hamburger Menu for Mobile -->
+<div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
+
+<!-- Header -->
+<div class="header">
+    <a href="Index.html">
+        <img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/>
+    </a>
+    <a href="Index.html" class="nav-link">Home</a>
+    <a href="Shop.html" class="nav-link">Shop</a>
+    <a href="About.html" class="nav-link">About Us</a>
+    <a href="Contact.html" class="nav-link">Contact Us</a>
+
     <!-- Search Bar -->
     <form class="search-bar">
         <input type="text" placeholder="Search" id="search-input" />
+        <ul id="search-results" class="search-results-list"></ul>
     </form>
+
     <!-- Cart Icon -->
     <a href="cart.html">
-        <img src="views/images/cart.png" height="40" width="auto"/>
+        <img src="views/images/cart.png" height="40" width="auto" alt="Shopping Cart"/>
     </a>
-        </div>
-
-        <div class="sidebar">
-            <li><a href="index.html" class="side-nav-link">Home</a></li><br />
-            <li><a href="shop.html" class="side-nav-link">Shop</a></li><br />
-            <li><a href="maker.html" class="side-nav-link">Shop by Vendor</a></li><br />
-            <!-- Vendor A-M with a drop of all the vendors and Vendor N-Z with a drop of all the vendors -->
-                <!-- Vendors A-M -->
-            <li><a href="Shop.html" class="side-nav-link">Vendor A-M</a></li><br />
-            <!-- Vendors N-Z -->
-            <li><a href="Shop.html" class="side-nav-link">Vendor N-Z</a></li><br />
-            <li><a href="Shop.html" class="side-nav-link">Craft Supplies</a></li><br />
-            <li><a href="Shop.html" class="side-nav-link">DIY Projects</a></li><br />
-            <li><a href="workshops.html" class="side-nav-link">Workshops</a></li><br />
-            <li><a href="blog.html" class="side-nav-link">Blog</a></li><br />
-            <li><a href="About.html" class="side-nav-link">About Us</a></li><br />
-            <li><a href="ContactUs.html" class="side-nav-link">Contact</a></li><br />
-        </div>
-    <div class="main-content">
-        <!-- Hero Section -->
-        <div class="context-box">
-            <h2>Discover Handmade Treasures, Crafted with Heart</h2>
-            <p>Locally made artisanal goods, unique crafts, and one-of-a-kind finds.<br /><br /></p>
-            <div class="hero-img">
-                <img src="views/images/feature.png" alt="Hero Image" class="hero-img">
-            <a href="Shop.html" class="buttonOne">Shop Now</a>
-            </div>
-        </div>
-        <!-- About Section -->
-<div class="context-box">
-            <h2>About Us</h2>
-            <p>The Tangled Oak + Craft Collective is a curated collection of handcrafted goods from talented artisans.
-                We bring unique, high-quality items to North Bay, celebrating creativity and craftsmanship.</p>
-            <a href="About.html" class="buttonTwo">Learn More</a>
 </div>
-        <!-- Featured Products -->
-        <div class="context-box">
-            <h2>Featured Products</h2>
-           <img src="views/images/Month.png" alt="Featured Products" class="">
-            <a href="Shop.html" class="buttonOne">Browse All Products</a>
-        </div>
 
-        <!-- Vendors Spotlight -->
-        <div class="context-box">
-        <h2>Maker Spotlight</h2>
-            <div class="vendor">
-                <h3>Cheese and Stuffs</h3>
-                <p>Delicious homemade jams, jellies, and preserves crafted with care.</p>
-            </div>
-            <a href="maker.html" class="buttonTwo">Meet More Makers</a>
-        </div>
+<!-- Sidebar-->
+<div class="sidebar">
+    <li><a href="Index.html" class="side-nav-link">Home</a></li><br />
+    <li><a href="Shop.html" class="side-nav-link">Shop</a></li><br />
+    <li><a href="About.html" class="side-nav-link">About Us</a></li><br />
+    <li><a href="contact.html" class="side-nav-link">Contact</a></li><br />
+</div>
+<div class="overlay" id="overlay">
+<img src="views/images/overlay.png" alt="leaves"/>
+</div>
+<!-- Main Content -->
+<div class="main-content">
 
-        <!-- Upcoming Events & Workshops -->
-        <div class="context-box">
-            <h2>Upcoming Events</h2>
-                <h3></h3>
-                <p>.</p>
-            <a href="events.html" class="buttonTwo">View All Events</a>
+    <!-- Hero Section -->
+    <div class="context-box">
+        <h2>Discover Handmade Treasures, Crafted with Heart</h2><br/>
+        <div class="hero-img">
+            <img src="views/images/feature.png" alt="Handmade Crafts Display" class="hero-img">
+            <p>Locally made artisanal goods, unique crafts, and one-of-a-kind finds.</p>
+            <a href="Shop.html" class="button">Shop Now</a>
         </div>
     </div>
 
-        <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section social-media">
-                <h2>Follow Us</h2>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61556577491923" aria-label="Follow us on Facebook">
-                        <img src="views/images/facebook.png" alt="Facebook Logo"/>
-                    </a>
-                    <a href="https://www.instagram.com/tangledoakcraft/" aria-label="Follow us on Instagram">
-                        <img src="views/images/instagram.png" alt="Instagram Logo"/>
-                    </a>
-                    <a href="https://www.pinterest.com/tangledoakcraft" aria-label="Follow us on Pinterest">
-                        <img src="views/images/pinterest.png" alt="Pinterest Logo"/>
-                    </a>
-                </div>
-            </div>
+    <!-- Featured Products -->
+    <div class="context-box">
+        <h2>Featured Products</h2>
+        <img src="views/images/Month.png" alt="Featured Products" class="hero-img">
+        <a href="Shop.html" class="button">Browse All Products</a>
+    </div>
 
-            <div class="footer-section quick-links">
-                <h2>Quick Links</h2>
-                <ul>
-                    <li><a href="/contact">Contact Us</a></li>
-                    <li><a href="/shipping-policy">Shipping & Returns</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                </ul>
-            </div>
+    <!-- About Section -->
+    <div class="context-box">
+        <h2>About Us</h2>
+        <p>Founded with a passion for craftsmanship,<br />
+            The Tangled Oak + Craft Collective brings together talented artisans from North Bay and beyond.<br/>
+            Every product tells a story, celebrating the artistry and dedication of makers.</p>
+        <a href="About.html" class="button">Learn More</a>
+    </div>
 
-            <div class="footer-section legal">
-                <h2>Legal</h2>
-                <ul>
-                    <li><a href="/privacy-policy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms & Conditions</a></li>
-                </ul>
+    <!-- Vendor Spotlight -->
+    <div class="context-box">
+        <h2>Vendor Spotlight</h2>
+        <div class="vendor">
+           <p> Meet Cheese and Stuffs, an artisan brand known for their handcrafted jams and jellies, made with locally sourced ingredients. Perfect for food lovers
+        </p></div>
+        <a href="vendor.html" class="button">Meet More Makers</a>
+    </div>
+
+    <!-- Blog -->
+    <!-- Blog Section
+    <div class="context-box">
+        <h2>Blog</h2>
+        <h3>Latest Articles & Interviews</h3>
+        <a href="blog.html" class="buttonTwo">View All Blog Posts</a>
+    </div>-->
+    <!--Business Hours-->
+    <div class="context-box">
+        <h2>Business Hours</h2>
+        <h3>Monday - Friday: 9 AM - 6 PM</h3>
+        <h3>Saturday & Sunday: 10 AM - 5 PM</h3>
+        <a href="hours.html" class="button">View All Hours</a>
+    </div>
+
+    <!-- Upcoming Events
+    <div class="context-box">
+        <h2>Upcoming Events</h2>
+        <h3>Stay Tuned for Exciting Workshops & Craft Fairs!</h3>
+        <a href="events.html" class="buttonTwo">View All Events</a>
+    </div>-->
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Social Media Section -->
+        <div class="footer-section social-media">
+            <h2>Follow Us</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61556577491923" aria-label="Follow us on Facebook">
+                    <img src="views/images/facebook.png" alt="Facebook Logo"/>
+                </a>
+                <a href="https://www.instagram.com/tangledoakcraft/" aria-label="Follow us on Instagram">
+                    <img src="views/images/instagram.png" alt="Instagram Logo"/>
+                </a>
+                <a href="https://www.pinterest.com/tangledoakcraft" aria-label="Follow us on Pinterest">
+                    <img src="views/images/pinterest.png" alt="Pinterest Logo"/>
+                </a>
             </div>
         </div>
 
-        <div class="copyright">
-            <p style="font-size: 8px">&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
+        <!-- Quick Links -->
+        <div class="footer-section quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="/shipping-policy">Shipping & Returns</a></li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
         </div>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+        <!-- Legal Section -->
+        <div class="footer-section legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms & Conditions</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <p style="font-size: 8px">&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/scripts.js"></script>
 </body>
 </html>
