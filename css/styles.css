@@ -1,0 +1,352 @@
+/* General Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #d0c4b6;
+    color: #333;
+    margin: auto;
+    max-width: 1000px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+/* Text Styles */
+h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #2D5C47;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #2D5C47;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Hero Image */
+.hero-img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border-color: #2D5C47;
+}
+
+/* Overlay styles */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('views/images/overlay.png') no-repeat center;
+    background-size: cover;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 50px; /* Push main content right, accounting for sidebar */
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d0c4b6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #333;
+    text-align: center;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #2D5C47;
+    text-align: center;
+    height: 100%;
+    top: 0;
+    padding: 20px;
+    width: 200px; /* Sidebar width */
+    position: fixed; /* Keeps sidebar fixed in place */
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgb(26, 47, 15);
+    font-size: 14px;
+    /*get rid of the dashes in the sidebar*/
+    list-style-type: none;
+    z-index: 10; /* Move sidebar to the top of the page */
+}
+.nav-link:hover {
+    color: #d0c4b6;
+}
+
+
+.sidebar .side-nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    display: block;
+}
+
+.sidebar .side-nav-link:hover {
+    color: #87a17a;
+}
+
+/* Responsive Fix: Stack Sidebar and Content on Small Screens */
+@media screen and (max-width: 900px) {
+    .sidebar {
+        position: static; /* Allow normal flow */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove left margin on small screens */
+        max-width: 100%;
+    }
+}
+
+
+/* Header Styling */
+.header {
+    position: relative;
+    top: 0;
+    width: 100%;
+    background-color: #abc29c;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgb(26, 47, 15);
+    z-index: 100;
+    color: #d0c4b6;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+}
+
+/* Navigation Links */
+.nav-link {
+    color: #2D5C47;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+
+/* Mobile Sidebar & Hamburger Menu */
+#hamburger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #2D5C47;
+    color: white;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .sidebar {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #2D5C47;
+        padding-top: 60px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+    #hamburger-menu {
+        display: block;
+    }
+}
+
+.sidebar.active {
+    display: block;
+}
+
+/* Context Box */
+.context-box {
+    background-color: rgb(224, 215, 207);
+    border: 1px solid #2D5C47;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgb(26, 47, 15);
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.button {
+    background-color: #2D5C47;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    border: 1px solid #87a17a;
+}
+
+.button:hover {
+    background-color: #87a17a;
+}
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #2D5C47;
+    font-weight: bold;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #2D5C47;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #87a17a;
+}
+
+/* Footer */
+.footer {
+    background-color: #abc29c;
+    padding: 30px 0;
+    text-align: center;
+    color: #1a2f0f;
+    font-size: 13px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0 2px 5px rgb(26, 47, 15);
+    position: -ms-device-fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 10px;
+    z-index: 100;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    min-width: 150px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #203a13;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #FFD700;
+}
+
+.social-icons a img {
+    height: 30px;
+    width: 30px;
+    margin: 0 8px;
+    transition: transform 0.3s;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1);
+}
+
+.copyright {
+    margin-top: 10px;
+    font-size: 8px;
+    color: #1a2f0f;
+}

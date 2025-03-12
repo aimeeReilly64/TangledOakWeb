@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tangled Oak Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" alt="Tangled Oak Word Logo"/></a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <form class="search-bar">
+        <input type="text" placeholder="Search" id="search-input" />
+    </form>
+    <a href="cart.html">
+        <img src="views/images/cart.png" height="40" alt="Cart"/>
+    </a>
+</div>
+
+<div class="sidebar">
+    <li><a href="index.html" class="side-nav-link">Home</a></li>
+    <h2>Shop by Vendor</h2>
+    <div id="vendors-container" class="vendors-container">Loading vendors...</div>
+    <li><a href="shop.html" class="side-nav-link">Shop</a></li>
+    <li><a href="about.html" class="side-nav-link">About Us</a></li>
+    <li><a href="contact.html" class="side-nav-link">Contact</a></li>
+</div>
+
+<div class="main-content">
+    <h1>The Tangled Oak Shop</h1>
+
+    <div class="context-box">
+        <h2>Shop by Category</h2>
+        <div id="categories-container" class="categories-container">Loading categories...</div>
+
+        <h2>Newest Products</h2>
+        <div id="products-container" class="products-container">Loading products...</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section social-media">
+            <h2>Follow Us</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61556577491923"><img src="views/images/facebook.png" alt="Facebook"/></a>
+                <a href="https://www.instagram.com/tangledoakcraft/"><img src="views/images/instagram.png" alt="Instagram"/></a>
+                <a href="https://www.pinterest.com/tangledoakcraft"><img src="views/images/pinterest.png" alt="Pinterest"/></a>
+            </div>
+        </div>
+        <p style="font-size: 8px">&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProducts();
+        fetchVendors();
+        fetchCategories();
+    });
+</script>
+
+</body>
+</html>
