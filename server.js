@@ -1,3 +1,16 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const fetch = require('node-fetch'); // Required for API calls
+
+const app = express();
+const port = process.env.PORT || 3000; // Use process.env.PORT for deployment
+
+app.use(cors());
+app.use(express.json());
+
+const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
+const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
 app.get('/products', async (req, res) => {
     try {
         const response = await fetch(SQUARE_API_URL, {

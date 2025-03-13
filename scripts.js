@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://tangledoakweb.onrender.com"; // Update this with your actual API URL
+const API_BASE_URL = "https://tangledoakweb.onrender.com";
 
 async function fetchProducts() {
     try {
