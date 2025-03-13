@@ -1,16 +1,18 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch'); // Required for API calls
+const fetch = require('node-fetch');
 
 const app = express();
-const port = process.env.PORT || 3000; // Use process.env.PORT for deployment
+const port = process.env.PORT || 3000;  // ✅ Render requires process.env.PORT
 
 app.use(cors());
 app.use(express.json());
 
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
+
+// ✅ Route: Fetch Products from Square
 app.get('/products', async (req, res) => {
     try {
         const response = await fetch(SQUARE_API_URL, {
@@ -27,34 +29,14 @@ app.get('/products', async (req, res) => {
         }
 
         const data = await response.json();
-
-        if (!data.objects || !Array.isArray(data.objects)) {
-            throw new Error("Invalid Square API response structure.");
-        }
-
-        // Organize products by category and vendor
-        const productsByCategory = {};
-        const productsByVendor = {};
-
-        data.objects.forEach(product => {
-            if (product && product.category_id) {
-                if (!productsByCategory[product.category_id]) {
-                    productsByCategory[product.category_id] = [];
-                }
-                productsByCategory[product.category_id].push(product);
-            }
-
-            if (product && product.vendor) {
-                if (!productsByVendor[product.vendor]) {
-                    productsByVendor[product.vendor] = [];
-                }
-                productsByVendor[product.vendor].push(product);
-            }
-        });
-
-        res.json({ productsByCategory, productsByVendor });
+        res.json(data);
     } catch (error) {
-        console.error("🚨 Error fetching products:", error.message);
-        res.status(500).json({ error: "Failed to fetch products." });
+        console.error("🚨 Square API error:", error.message);
+        res.status(500).json({ error: "Failed to fetch products from Square API" });
     }
+});
+
+// ✅ Ensure Render detects an open port
+app.listen(port, '0.0.0.0', () => {
+    console.log(`✅ Server running on port ${port}`);
 });
