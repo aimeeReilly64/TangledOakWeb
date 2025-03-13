@@ -49,6 +49,44 @@ function displayNewestProducts(products) {
         productsContainer.appendChild(productCard);
     });
 }
+async function fetchVendors() {
+    console.log("🔎 Fetching vendors...");
+
+    try {
+        const response = await fetch("http://localhost:3000/vendors"); // Update if necessary
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        console.log("✅ Vendors fetched:", data);
+
+        displayVendors(data.vendors);
+    } catch (error) {
+        console.error("🚨 Error fetching vendors:", error);
+    }
+}
+
+// Dummy function for displaying vendors (modify as needed)
+function displayVendors(vendors) {
+    const vendorsContainer = document.getElementById("vendors-container");
+    if (!vendorsContainer) {
+        console.error("❌ ERROR: Missing #vendors-container in the HTML.");
+        return;
+    }
+
+    vendorsContainer.innerHTML = vendors.map(vendor => `<p>${vendor.name}</p>`).join("");
+}
+
+// Ensure vendors are fetched when page loads
+document.addEventListener("DOMContentLoaded", () => {
+    fetchVendors();
+});
+function groupBy(array, key) {
+    return array.reduce((result, obj) => {
+        (result[obj[key]] = result[obj[key]] || []).push(obj);
+        return result;
+    }, {});
+}
+
 
 // Ensure script runs after the page loads
 document.addEventListener("DOMContentLoaded", () => {
