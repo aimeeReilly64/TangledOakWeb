@@ -1,111 +1,56 @@
 const API_BASE_URL = "https://tangledoakweb.onrender.com/products";
 
+// Ensure the API endpoint is correct
+const API_URL = "http://localhost:3000/products"; // Change this if hosted
+
 async function fetchProducts() {
     try {
-        const response = await fetch(API_BASE_URL); //
-         if (!response.ok) throw new Error(`Failed to fetch products. Status: ${response.status}`);
+        const response = await fetch(API_URL);
+
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
         const data = await response.json();
-        const productsByCategory = groupBy(data.products, "category");
-        const productsByVendor = groupBy(data.products, "vendor");
-        displayProductsByCategory(productsByCategory);
-        displayProductsByVendor(productsByVendor);
-            // Display products in a grid layout
-        displayProductsInGrid(data.products);
+
+        if (!data.products || data.products.length === 0) {
+            console.error("No products received from API.");
+            return;
+        }
+
+        displayNewestProducts(data.products);
     } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("🚨 Error fetching products:", error);
     }
 }
 
-async function fetchProductsByCategory(category) {
-    try {
-        const response = await fetch(API_BASE_URL); //
-        if (!response.ok) throw new Error(`Failed to fetch products. Status: ${response.status}`);
-        const data = await response.json();
-        const products = data.products.filter(product => product.category === category);
-        displayProductsByCategory({ [category]: products });
-    } catch (error) {
-        console.error("Error fetching products:", error);
-    }
-}
-
-function displayProductsByCategory(productsByCategory) {
-    const categoriesContainer = document.getElementById("categories-container");
-    categoriesContainer.innerHTML = '';
-
-    Object.keys(productsByCategory).forEach(category => {
-        const categorySection = document.createElement("div");
-        categorySection.classList.add("category-section");
-        categorySection.innerHTML = `
-            <h2>${category}</h2>
-            <div class="product-list">
-                ${productsByCategory[category].map(product => `
-                    <div class="product-card">
-                        <img src="${product.image_url}" alt="${product.name}" class="product-image">
-                        <h3>${product.name}</h3>
-                        <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
-                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        categoriesContainer.appendChild(categorySection);
-    });
-}
-
-function displayProductsByVendor(productsByVendor) {
-    const vendorsContainer = document.getElementById("vendors-container");
-    vendorsContainer.innerHTML = '';
-
-    Object.keys(productsByVendor).forEach(vendor => {
-        const vendorSection = document.createElement("div");
-        vendorSection.classList.add("vendor-section");
-
-        vendorSection.innerHTML = `
-            <h2>${vendor}</h2>
-            <div class="product-list">
-                ${productsByVendor[vendor].map(product => `
-                    <div class="product-card">
-                        <img src="${product.image_url}" alt="${product.name}" class="product-image">
-                        <h3>${product.name}</h3>
-                        <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
-                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        vendorsContainer.appendChild(vendorSection);
-    });
-}
-function displayNewProduct(product) {}
-
-function displayProductsInGrid(products) {
+function displayNewestProducts(products) {
     const productsContainer = document.getElementById("products-container");
-    productsContainer.innerHTML = '';
 
-    products.forEach(product => {
+    if (!productsContainer) {
+        console.error("❌ ERROR: Missing #products-container in the HTML.");
+        return;
+    }
+
+    productsContainer.innerHTML = ""; // Clear previous content
+
+    products.slice(0, 3).forEach(product => {
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
+
         productCard.innerHTML = `
-            <img src="${product.image_url}" alt="${product.name}" class="product-image">
-            <h3>${product.name}</h3>
-            <p class="product-price">$${(product.price / 100).toFixed(2)}</p>
-            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+            <a href="${product.ecomUri || "#"}">
+                <img src="${product.imageUrl || 'placeholder.jpg'}" alt="${product.name}" class="product-image">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-price">$${product.price.toFixed(2)} ${product.currency}</p>
+                <p class="product-description">${product.description || "No description available."}</p>
+                <button class="button">View Product</button>
+            </a>
         `;
+
         productsContainer.appendChild(productCard);
     });
 }
 
-fetchProducts();
-document.addEventListener("click", event => {
-    if (event.target.classList.contains("category-link")) {
-        const category = event.target.textContent;
-        fetchProductsByCategory(category);
-    }   else {
-        const vendor = event.target.textContent;
-        fetchProductsByVendor(vendor);  // fetch products by vendor and display them in the vendors-container  //
-    }
+// Ensure script runs after the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    fetchProducts();
 });
-
-function redirectToSquareCheckout(productId) {
-    window.location.href = `https://squareup.com/checkout?product=${productId}`;
-}
