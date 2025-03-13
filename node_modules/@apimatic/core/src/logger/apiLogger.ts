@@ -97,11 +97,23 @@ export class ApiLogger implements ApiLoggerInterface {
     } = logRequest;
 
     if (logHeaders) {
+      const clonedHeaders = { ...request.headers };
+
+      // If request.auth exists, encode it as Basic Auth and add it in cloned headers
+      if (request.auth?.username && request.auth?.password) {
+        const authString = `${request.auth.username}:${request.auth.password}`;
+        (clonedHeaders as Record<
+          string,
+          string
+        >).Authorization = `Basic ${Buffer.from(authString, 'utf-8').toString(
+          'base64'
+        )}`;
+      }
       const headersToLog = this._extractHeadersToLog(
         headersToInclude,
         headersToExclude,
         headersToWhitelist,
-        request.headers
+        clonedHeaders
       );
 
       this._logger.log(level, 'Request headers ${headers}', {
@@ -260,17 +272,18 @@ export class ApiLogger implements ApiLoggerInterface {
     headers: Record<string, string>,
     headersToWhitelist: string[]
   ): Record<string, string> {
+    const masked_headers = { ...headers };
     if (this._loggingOptions.maskSensitiveHeaders) {
       for (const key of Object.keys(headers)) {
         const val = getHeader(headers, key) ?? '';
         setHeader(
-          headers,
+          masked_headers,
           key,
           this._maskIfSenstiveHeader(key, val, headersToWhitelist)
         );
       }
     }
-    return headers;
+    return masked_headers;
   }
 
   private _maskIfSenstiveHeader(
