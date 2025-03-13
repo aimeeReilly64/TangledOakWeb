@@ -4,7 +4,7 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 
 const app = express();
-const port = process.env.PORT || 3000;  // ✅ Render requires process.env.PORT
+const port = process.env.PORT || 3000;  //Render requires process.env.PORT
 
 app.use(cors());
 app.use(express.json());
@@ -12,7 +12,6 @@ app.use(express.json());
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
 
-// ✅ Route: Fetch Products from Square
 app.get('/products', async (req, res) => {
     try {
         const response = await fetch(SQUARE_API_URL, {
@@ -29,14 +28,36 @@ app.get('/products', async (req, res) => {
         }
 
         const data = await response.json();
-        res.json(data);
+
+        //relevant product details
+        const formattedProducts = data.objects
+            .filter(item => item.type === "ITEM" && item.item_data) // Ensure it's an ITEM
+            .map(item => ({
+                id: item.id,
+                name: item.item_data.name,
+                description: item.item_data.description_plaintext || item.item_data.description,
+                price: item.item_data.variations[0]?.item_variation_data?.price_money?.amount / 100 || 0,
+                currency: item.item_data.variations[0]?.item_variation_data?.price_money?.currency || "CAD",
+                variations: item.item_data.variations.map(variation => ({
+                    id: variation.id,
+                    name: variation.item_variation_data.name,
+                    price: variation.item_variation_data.price_money.amount / 100,
+                    currency: variation.item_variation_data.price_money.currency
+                })),
+                vendorId: item.item_data.variations[0]?.item_variation_data?.item_variation_vendor_infos?.[0]?.item_variation_vendor_info_data?.vendor_id || "Unknown",
+                imageUrl: item.item_data.ecom_image_uris?.[0] || null,
+                ecomUri: item.item_data.ecom_uri || null
+            }));
+
+        res.json({ products: formattedProducts });
     } catch (error) {
-        console.error("🚨 Square API error:", error.message);
-        res.status(500).json({ error: "Failed to fetch products from Square API" });
+        console.error("🚨 Error fetching products:", error.message);
+        res.status(500).json({ error: "Failed to fetch products." });
     }
 });
 
-// ✅ Ensure Render detects an open port
+
+// Do not remove - Render detects an open port
 app.listen(port, '0.0.0.0', () => {
     console.log(`✅ Server running on port ${port}`);
 });

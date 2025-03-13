@@ -1,18 +1,17 @@
-const API_BASE_URL = "https://tangledoakweb.onrender.com";
+const API_BASE_URL = "https://tangledoakweb.onrender.com/products";
 
 async function fetchProducts() {
     try {
-        const response = await fetch(`${API_BASE_URL}/products`);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const response = await fetch(API_BASE_URL); //
+         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-        const { productsByCategory, productsByVendor } = await response.json();
-
-        displayProductsByCategory(productsByCategory);
-        displayProductsByVendor(productsByVendor);
+        const data = await response.json();
+        displayProducts(data.products);
     } catch (error) {
         console.error("Error fetching products:", error);
     }
 }
+
 
 function displayProductsByCategory(productsByCategory) {
     const categoriesContainer = document.getElementById("categories-container");
@@ -61,6 +60,32 @@ function displayProductsByVendor(productsByVendor) {
             </div>
         `;
         vendorsContainer.appendChild(vendorSection);
+    });
+}
+function displayProducts(products) {
+    const productsContainer = document.getElementById("products-container");
+    if (!productsContainer) {
+        console.error("❌ ERROR: Missing #products-container in Shop.html");
+        return;
+    }
+
+    productsContainer.innerHTML = ""; // Clear existing content
+
+    products.forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+
+        productCard.innerHTML = `
+            <a href="${product.ecomUri}" target="_blank">
+                <img src="${product.imageUrl || 'default.jpg'}" alt="${product.name}" class="product-image">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                <p class="product-price">$${product.price.toFixed(2)} ${product.currency}</p>
+                <button class="button">View Product</button>
+            </a>
+        `;
+
+        productsContainer.appendChild(productCard);
     });
 }
 
