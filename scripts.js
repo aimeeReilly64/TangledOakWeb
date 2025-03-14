@@ -4,6 +4,34 @@ const API_URL = "https://tangledoakweb.onrender.com/products"; // Change if need
 let products = [];
 let currentPage = 1;
 const productsPerPage = 6;
+function populateVendorFilter() {
+    console.log("🔎 Populating vendor filter...");
+
+    const vendorSelect = document.getElementById("vendor-select");
+    if (!vendorSelect) {
+        console.error("❌ ERROR: Missing #vendor-select in the HTML.");
+        return;
+    }
+
+    // Ensure 'products' is available before calling this function
+    if (!products || products.length === 0) {
+        console.warn("⚠️ No products found, skipping vendor filter population.");
+        return;
+    }
+
+    const uniqueVendors = [...new Set(products.map(product => product.vendorId))];
+
+    vendorSelect.innerHTML = `<option value="all">All Vendors</option>`;
+    uniqueVendors.forEach(vendorId => {
+        const vendorName = VENDOR_NAMES[vendorId] || `Unknown Vendor (${vendorId})`;
+        const option = document.createElement("option");
+        option.value = vendorId;
+        option.textContent = vendorName;
+        vendorSelect.appendChild(option);
+    });
+
+    console.log("✅ Vendor filter populated successfully.");
+}
 
 // Fetch Products from API
 async function fetchProducts() {
