@@ -1,18 +1,18 @@
-const API_BASE_URL = "https://tangledoakweb.onrender.com/products";
-
-// Ensure the API endpoint is correct
-const API_URL = "http://localhost:3000/products"; // Change this if hosted
+const API_URL = "https://tangledoakweb.onrender.com/products"; // Change if needed
 
 async function fetchProducts() {
+    console.log("🔎 Fetching products...");
+
     try {
         const response = await fetch(API_URL);
 
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
+        console.log("✅ Data received:", data);  // Logs the full response for debugging
 
         if (!data.products || data.products.length === 0) {
-            console.error("No products received from API.");
+            console.warn("⚠️ No products found.");
             return;
         }
 
@@ -42,6 +42,7 @@ function displayNewestProducts(products) {
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-price">$${product.price.toFixed(2)} ${product.currency}</p>
                 <p class="product-description">${product.description || "No description available."}</p>
+                <p class="product-vendor"><strong>Vendor:</strong> ${product.vendorId}</p>
                 <button class="button">View Product</button>
             </a>
         `;
@@ -49,46 +50,9 @@ function displayNewestProducts(products) {
         productsContainer.appendChild(productCard);
     });
 }
-async function fetchVendors() {
-    console.log("🔎 Fetching vendors...");
-
-    try {
-        const response = await fetch("https://tangledoakweb.onrender.com/vendors"); // Update if needed
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        console.log("✅ Vendors fetched:", data);
-
-        displayVendors(data.vendors);
-    } catch (error) {
-        console.error("🚨 Error fetching vendors:", error);
-    }
-}
-
-function displayVendors(vendors) {
-    const vendorsContainer = document.getElementById("vendors-container");
-    if (!vendorsContainer) {
-        console.error("❌ ERROR: Missing #vendors-container in the HTML.");
-        return;
-    }
-
-    vendorsContainer.innerHTML = vendors.map(vendor => `<p>${vendor.name}</p>`).join("");
-}
-
-// Ensure vendors are fetched when page loads
-document.addEventListener("DOMContentLoaded", () => {
-    fetchVendors();
-});
-
-function groupBy(array, key) {
-    return array.reduce((result, obj) => {
-        (result[obj[key]] = result[obj[key]] || []).push(obj);
-        return result;
-    }, {});
-}
-
 
 // Ensure script runs after the page loads
 document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
 });
+

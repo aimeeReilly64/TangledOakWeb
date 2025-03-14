@@ -35,25 +35,23 @@ app.get('/products', async (req, res) => {
 
         const data = await response.json();
 
-        //relevant product details
         const formattedProducts = data.objects
             .filter(item => item.type === "ITEM" && item.item_data) // Ensure it's an ITEM
-            .map(item => ({
-                id: item.id,
-                name: item.item_data.name,
-                description: item.item_data.description_plaintext || item.item_data.description,
-                price: item.item_data.variations[0]?.item_variation_data?.price_money?.amount / 100 || 0,
-                currency: item.item_data.variations[0]?.item_variation_data?.price_money?.currency || "CAD",
-                variations: item.item_data.variations.map(variation => ({
-                    id: variation.id,
-                    name: variation.item_variation_data.name,
-                    price: variation.item_variation_data.price_money.amount / 100,
-                    currency: variation.item_variation_data.price_money.currency
-                })),
-                vendorId: item.item_data.variations[0]?.item_variation_data?.item_variation_vendor_infos?.[0]?.item_variation_vendor_info_data?.vendor_id || "Unknown",
-                imageUrl: item.item_data.ecom_image_uris?.[0] || null,
-                ecomUri: item.item_data.ecom_uri || null
-            }));
+            .map(item => {
+                const firstVariation = item.item_data.variations?.[0]?.item_variation_data || {};
+                const vendorInfo = firstVariation.item_variation_vendor_infos?.[0]?.item_variation_vendor_info_data || {};
+
+                return {
+                    id: item.id,
+                    name: item.item_data.name,
+                    description: item.item_data.description || "No description available.",
+                    price: (firstVariation.price_money?.amount || 0) / 100, // Convert cents to dollars
+                    currency: firstVariation.price_money?.currency || "CAD",
+                    vendorId: vendorInfo.vendor_id || "Unknown Vendor",
+                    imageUrl: item.item_data.ecom_image_uris?.[0] || 'placeholder.jpg',
+                    ecomUri: item.item_data.ecom_uri || "#"
+                };
+            });
 
         res.json({ products: formattedProducts });
     } catch (error) {
