@@ -2,9 +2,247 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vendor Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tangled Oak Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-needs to have php to handle changed to vendor and product depending on what the user selects
+
+<!-- Header -->
+<!-- Hamburger Menu for Mobile -->
+<div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
+
+<!-- Header -->
+<div class="header">
+    <a href="Index.html">
+        <img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/>
+    </a>
+    <a href="Index.html" class="nav-link">Home</a>
+    <a href="Shop.html" class="nav-link">Shop</a>
+    <a href="About.html" class="nav-link">About Us</a>
+    <a href="ContactUs.html" class="nav-link">Contact Us</a>
+
+    <!-- Search Bar -->
+    <form class="search-bar">
+        <input type="text" placeholder="Search" id="search-input" />
+        <ul id="search-results" class="search-results-list"></ul>
+    </form>
+
+    <!-- Cart Icon -->
+    <a href="Cart.html">
+        <img src="views/images/cart.png" height="40" width="auto" alt="Shopping Cart"/>
+    </a>
+</div>
+
+
+<!-- Main Shop Layout -->
+<main class="shop-container">
+    <div class="sidebar">
+        <h2>Browse by Category</h2>
+        <ul class="category-list">
+            <li class="category-dropdown">
+                <a href="https://the-tangled-oak-craft-collective.square.site/shop/jewelry" target="_blank">Jewelry</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Rings</a></li>
+                    <li><a href="#">Necklaces</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Clothing</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Shirts</a></li>
+                    <li><a href="#">Pants</a></li>
+                    <li><a href="#">Sweaters</a></li>
+                    <li><a href="#">Jackets</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">DIY Crafts + Supplies</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Home Decor</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Bedding</a></li>
+                    <li><a href="#">Candles</a></li>
+                    <li><a href="#">Wall Art</a></li>
+                    <li><a href="#">Mirrors</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Bath + Body</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Soap & Scrubs</a></li>
+                    <li><a href="#">Bath Bombs</a></li>
+                    <li><a href="#">Skincare</a></li>
+                    <li><a href="#">Hair Care</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Kitchen</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Cookware</a></li>
+                    <li><a href="#">Cutlery</a></li>
+                    <li><a href="#">Tableware</a></li>
+                    <li><a href="#">Kitchen Decor</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Crystals + Healing</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Pets</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Cats</a></li>
+                    <li><a href="#">Dogs</a></li>
+                    <li><a href="#">Birds</a></li>
+                    <li><a href="#">Fish</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Knives + Blades</a></li>
+
+            <li><a href="#">Gift Accessories & Paper Goods</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Pottery</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Accessories</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Jewelry Boxes</a></li>
+                    <li><a href="#">Scarves</a></li>
+                    <li><a href="#">Hats</a></li>
+                    <li><a href="#">Bags</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Digital Downloads</a></li>
+        </ul>
+        <h2>Shop by Vendor</h2>
+        <a href="VendorShop.html">Shop All Vendors</a>
+        <ul class="vendor-list">
+            <li><a href="VendorProfile.html">Bohemian Heart Crafts</a></li>
+            <li><a href="VendorProfile.html">Knit with Love by Carol</a></li>
+            <li><a href="VendorProfile.html">Peddie Pieces</a></li>
+            <li><a href="VendorProfile.html">Candy Dandy Crafts</a></li>
+            <li><a href="VendorProfile.html">The Knotty Celt</a></li>
+            <li><a href="VendorProfile.html">Mo's Craftworks</a></li>
+            <li><a href="VendorProfile.html">A&S Crystals</a></li>
+            <li><a href="VendorProfile.html">Tags & Tropics</a></li>
+            <li><a href="VendorProfile.html">Ocean Soul Clay</a></li>
+            <li><a href="VendorProfile.html">Knits by Marsha Ann</a></li>
+            <li><a href="VendorProfile.html">Muddy Paws Raw</a></li>
+            <li><a href="VendorProfile.html">Cheese + Stuffs</a></li>
+            <li><a href="VendorProfile.html">Soap & Seed</a></li>
+            <li><a href="VendorProfile.html">Top to Toe Knits</a></li>
+            <li><a href="VendorProfile.html">She Keeps Bees</a></li>
+            <li><a href="VendorProfile.html">Cosmically Connected</a></li>
+
+        </ul>
+    </asi>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <h1>Meet our Makers</h1>
+        <div class="maker-cards">
+            <div class="maker-card">
+                <img src="views/images/makers/maker1.jpg" alt="maker1"/>
+                <p>Bohemian Heart Crafts</p>
+                <p> Has a passion for different types of crafting. Handcrafted crochet items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker2.jpg" alt="maker2"/>
+                <p>Knit with Love by Carol</p>
+                <p>A passion for the craft of knitted items. Handmade and hand crocheted items such as hats, scarves, and more.</p>
+                </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker3.jpg" alt="maker3"/>
+                <p>Peddie Pieces</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker4.jpg" alt="maker4"/>
+                <p>Candy Dandy Crafts</p>
+                <p>A passion for the craft of handcrafted items. Handmade and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker5.jpg" alt="maker5"/>
+                <p>The Knotty Celt</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker6.jpg" alt="maker6"/>
+                <p>Mo's Craftworks</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker7.jpg" alt="maker7"/>
+                <p>A&S Crystals</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+                </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker8.jpg" alt="maker8"/>
+                <p>Tags & Tropics</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker9.jpg" alt="maker9"/>
+                <p>Ocean Soul Clay</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker10.jpg" alt="maker10"/>
+                <p>Knits by Marsha Ann</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker11.jpg" alt="maker11"/>
+                <p>Muddy Paws Raw</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker12.jpg" alt="maker12"/>
+                <p>Cheese + Stuffs</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker13.jpg" alt="maker13"/>
+                <p>Soap & Seed</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker14.jpg" alt="maker14"/>
+                <p>Top to Toe Knits</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker15.jpg" alt="maker15"/>
+                <p>She Keeps Bees</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+            <div class="maker-card">
+                <img src="views/images/makers/maker16.jpg" alt="maker16"/>
+                <p>Cosmically Connected</p>
+                <p>A dedicated knitter and crocheter. Handcrafted and hand knitted items such as hats, scarves, and more.</p>
+            </div>
+
+            <!-- Add more maker cards here -->
+                    </div>
+        </section>
+    </div>
+    <!-- Copyright -->
+    <div class="copyright">
+        <p style="font-size: 8px">&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
+    </div>
+    </footer>
+    <script src="script.js"></script>
+
+</main>
 </body>
 </html>
+

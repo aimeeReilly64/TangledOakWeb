@@ -39,8 +39,18 @@ function populateVendorFilter() {
 // Fetch Vendors and Populate Vendor Dropdown
 const VENDOR_NAMES = {
     "6ITGGUAU4WFNODHC": "Bohemian Heart Crafts",
-    "XYZ123456789": "Crafty Corner",
-    "ABC987654321": "Rustic Designs"
+    "PRXTSMGSCHHM4VRY": "Candy Dandy Crafts",
+    //Cosmically Connected
+    //Spoons and Stuff by Christine
+    "WLW2NWHJYTWCYS4": "Knit with Love by Carol",
+    "77ZZ63H2LQYHK72L": "Ocean Soul Clay",
+
+    "PNBDSFW5JXMK3Y4G": "DIY",
+    "D4UWK3EJ3HNBXF4C": "Peddie Pieces",
+    "TBHP56ZWF4T5NLQ6": "Mo's Craftworks",
+    "WQSD7V2F6OWOBQGR": "The Knotty Celt",
+    "C5EH3KNZGT5UKOZA":"Tags & Tropics",
+    "ZYSJENBBVMP4RZQW": "A&S Crystals"
     // Add more vendors here if available
 };
 

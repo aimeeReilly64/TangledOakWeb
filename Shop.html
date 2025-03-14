@@ -9,30 +9,37 @@
 <body>
 
 <!-- Header -->
-<header class="header">
-    <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" alt="Tangled Oak Word Logo"/></a>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="shop.html" class="active">Shop</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <form class="search-bar">
-            <input type="text" placeholder="Search for products..." id="search-input" />
-        </form>
-        <a href="cart.html">
-            <img src="views/images/cart.png" height="40" alt="Cart"/>
-        </a>
-    </nav>
-</header>
+<!-- Hamburger Menu for Mobile -->
+<div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
+
+<!-- Header -->
+<div class="header">
+    <a href="Index.html">
+        <img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/>
+    </a>
+    <a href="Index.html" class="nav-link">Home</a>
+    <a href="Shop.html" class="nav-link">Shop</a>
+    <a href="About.html" class="nav-link">About Us</a>
+    <a href="ContactUs.html" class="nav-link">Contact Us</a>
+
+    <!-- Search Bar -->
+    <form class="search-bar">
+        <input type="text" placeholder="Search" id="search-input" />
+        <ul id="search-results" class="search-results-list"></ul>
+    </form>
+
+    <!-- Cart Icon -->
+    <a href="Cart.html">
+        <img src="views/images/cart.png" height="40" width="auto" alt="Shopping Cart"/>
+    </a>
+</div>
+
 
 <!-- Main Shop Layout -->
 <main class="shop-container">
-
-    <aside class="sidebar">
+    <div class="sidebar">
         <h2>Browse by Category</h2>
         <ul class="category-list">
-            <li><a href="#">Digital Downloads</a></li>
-
             <li class="category-dropdown">
                 <a href="https://the-tangled-oak-craft-collective.square.site/shop/jewelry" target="_blank">Jewelry</a>
                 <ul class="subcategory-list">
@@ -114,14 +121,30 @@
             </li>
 
             <li><a href="#">Kids</a></li>
+            <li><a href="#">Digital Downloads</a></li>
         </ul>
-    </aside>
-
         <h2>Shop by Vendor</h2>
-        <select id="vendor-select">
-            <option value="all">All Vendors</option>
-        </select>
-    </aside>
+        <a href="VendorShop.html">Shop All Vendors</a>
+        <ul class="vendor-list">
+            <li><a href="VendorProfile.html">Bohemian Heart Crafts</a></li>
+            <li><a href="VendorProfile.html">Knit with Love by Carol</a></li>
+            <li><a href="VendorProfile.html">Peddie Pieces</a></li>
+            <li><a href="VendorProfile.html">Candy Dandy Crafts</a></li>
+            <li><a href="VendorProfile.html">The Knotty Celt</a></li>
+            <li><a href="VendorProfile.html">Mo's Craftworks</a></li>
+            <li><a href="VendorProfile.html">A&S Crystals</a></li>
+            <li><a href="VendorProfile.html">Tags & Tropics</a></li>
+            <li><a href="VendorProfile.html">Ocean Soul Clay</a></li>
+            <li><a href="VendorProfile.html">Knits by Marsha Ann</a></li>
+            <li><a href="VendorProfile.html">Muddy Paws Raw</a></li>
+            <li><a href="VendorProfile.html">Cheese + Stuffs</a></li>
+            <li><a href="VendorProfile.html">Soap & Seed</a></li>
+            <li><a href="VendorProfile.html">Top to Toe Knits</a></li>
+            <li><a href="VendorProfile.html">She Keeps Bees</a></li>
+            <li><a href="VendorProfile.html">Cosmically Connected</a></li>
+
+        </ul>
+    </div>
 
     <!-- Main Content -->
     <section class="main-content">
@@ -132,6 +155,7 @@
             <label for="sort-select">Sort by:</label>
             <select id="sort-select">
                 <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
                 <option value="price-low-high">Price: Low to High</option>
                 <option value="price-high-low">Price: High to Low</option>
             </select>

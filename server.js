@@ -61,7 +61,7 @@ app.get('/products', async (req, res) => {
 
         res.json({ products: formattedProducts });
     } catch (error) {
-        console.error("🚨 Error fetching products:", error.message);
+        console.error(" Error fetching products:", error.message);
         res.status(500).json({ error: "Failed to fetch products." });
     }
 });
