@@ -179,6 +179,14 @@ function filterByCategory(category) {
     alert(`Filtering by category: ${category}`);
     // Implement filtering logic if categories are fetched dynamically
 }
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".category-dropdown > a").forEach(category => {
+        category.addEventListener("click", (e) => {
+            e.preventDefault(); // Prevent page refresh
+            category.parentElement.classList.toggle("active"); // Toggle visibility
+        });
+    });
+});
 
 // Event Listeners
 document.getElementById("sort-select").addEventListener("change", displayProducts);

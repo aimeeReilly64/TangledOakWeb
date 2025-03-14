@@ -9,6 +9,28 @@ body {
     display: flex;
     flex-direction: column;
 }
+.category-dropdown > ul {
+    display: none; /* Hide subcategories by default */
+    list-style: none;
+    padding-left: 15px;
+}
+
+.category-dropdown > a {
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.category-dropdown > a:hover {
+    color: #555;
+}
+
+.category-dropdown.active > ul {
+    display: block; /* Show when clicked */
+}
 
 /* Table Styling */
 table {

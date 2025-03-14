@@ -12,10 +12,10 @@
 <header class="header">
     <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" alt="Tangled Oak Word Logo"/></a>
     <nav>
-        <a href="Index.html">Home</a>
-        <a href="Shop.html" class="active">Shop</a>
-        <a href="About.html">About Us</a>
-        <a href="ContactUS.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
         <form class="search-bar">
             <input type="text" placeholder="Search for products..." id="search-input" />
         </form>
@@ -28,10 +28,94 @@
 <!-- Main Shop Layout -->
 <main class="shop-container">
 
-    <!-- Sidebar with Filters -->
     <aside class="sidebar">
-        <h2>Shop by Category</h2>
-        <div id="categories-container" class="categories-container">Loading categories...</div>
+        <h2>Browse by Category</h2>
+        <ul class="category-list">
+            <li><a href="#">Digital Downloads</a></li>
+
+            <li class="category-dropdown">
+                <a href="https://the-tangled-oak-craft-collective.square.site/shop/jewelry" target="_blank">Jewelry</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Rings</a></li>
+                    <li><a href="#">Necklaces</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Clothing</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Shirts</a></li>
+                    <li><a href="#">Pants</a></li>
+                    <li><a href="#">Sweaters</a></li>
+                    <li><a href="#">Jackets</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">DIY Crafts + Supplies</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Home Decor</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Bedding</a></li>
+                    <li><a href="#">Candles</a></li>
+                    <li><a href="#">Wall Art</a></li>
+                    <li><a href="#">Mirrors</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Bath + Body</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Soap & Scrubs</a></li>
+                    <li><a href="#">Bath Bombs</a></li>
+                    <li><a href="#">Skincare</a></li>
+                    <li><a href="#">Hair Care</a></li>
+                </ul>
+            </li>
+
+            <li class="category-dropdown">
+                <a href="#">Kitchen</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Cookware</a></li>
+                    <li><a href="#">Cutlery</a></li>
+                    <li><a href="#">Tableware</a></li>
+                    <li><a href="#">Kitchen Decor</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Crystals + Healing</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Pets</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Cats</a></li>
+                    <li><a href="#">Dogs</a></li>
+                    <li><a href="#">Birds</a></li>
+                    <li><a href="#">Fish</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Knives + Blades</a></li>
+
+            <li><a href="#">Gift Accessories & Paper Goods</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Pottery</a></li>
+
+            <li class="category-dropdown">
+                <a href="#">Accessories</a>
+                <ul class="subcategory-list">
+                    <li><a href="#">Jewelry Boxes</a></li>
+                    <li><a href="#">Scarves</a></li>
+                    <li><a href="#">Hats</a></li>
+                    <li><a href="#">Bags</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Kids</a></li>
+        </ul>
+    </aside>
 
         <h2>Shop by Vendor</h2>
         <select id="vendor-select">
@@ -89,4 +173,5 @@
 
 </body>
 </html>
+
 
