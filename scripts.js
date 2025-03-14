@@ -39,9 +39,7 @@ async function fetchVendors() {
 
         const data = await response.json();
         if (!data.products) return;
-
         const uniqueVendors = [...new Set(data.products.map(product => product.vendorId))];
-
         const vendorSelect = document.getElementById("vendor-select");
         if (!vendorSelect) {
             console.error("❌ ERROR: Missing #vendor-select in the HTML.");
