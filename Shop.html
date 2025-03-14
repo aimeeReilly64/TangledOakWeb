@@ -8,35 +8,41 @@
 </head>
 <body>
 
-<div class="header">
+<!-- Header -->
+<header class="header">
     <a href="index.html"><img src="views/images/wordsLogo2.png" height="105" alt="Tangled Oak Word Logo"/></a>
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="shop.html" class="nav-link">Shop</a>
-    <a href="about.html" class="nav-link">About Us</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-    <form class="search-bar">
-        <input type="text" placeholder="Search" id="search-input" />
-    </form>
-    <a href="cart.html">
-        <img src="views/images/cart.png" height="40" alt="Cart"/>
-    </a>
-</div>
+    <nav>
+        <a href="Index.html">Home</a>
+        <a href="Shop.html" class="active">Shop</a>
+        <a href="About.html">About Us</a>
+        <a href="ContactUS.html">Contact</a>
+        <form class="search-bar">
+            <input type="text" placeholder="Search for products..." id="search-input" />
+        </form>
+        <a href="cart.html">
+            <img src="views/images/cart.png" height="40" alt="Cart"/>
+        </a>
+    </nav>
+</header>
 
-<div class="sidebar">
-    <li><a href="index.html" class="side-nav-link">Home</a></li>
-    <h2>Shop by Vendor</h2>
-    <div id="vendors-container" class="vendors-container">Loading vendors...</div>
-    <li><a href="shop.html" class="side-nav-link">Shop</a></li>
-    <li><a href="about.html" class="side-nav-link">About Us</a></li>
-    <li><a href="contact.html" class="side-nav-link">Contact</a></li>
-</div>
+<!-- Main Shop Layout -->
+<main class="shop-container">
 
-<div class="main-content">
-    <h1>The Tangled Oak Shop</h1>
-
-    <div class="context-box">
+    <!-- Sidebar with Filters -->
+    <aside class="sidebar">
         <h2>Shop by Category</h2>
         <div id="categories-container" class="categories-container">Loading categories...</div>
+
+        <h2>Shop by Vendor</h2>
+        <select id="vendor-select">
+            <option value="all">All Vendors</option>
+        </select>
+    </aside>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <h1>Shop Our Collection</h1>
+
         <!-- Sorting & Filtering UI -->
         <div class="filters">
             <label for="sort-select">Sort by:</label>
@@ -45,20 +51,18 @@
                 <option value="price-low-high">Price: Low to High</option>
                 <option value="price-high-low">Price: High to Low</option>
             </select>
-
-            <label for="vendor-select">Filter by Vendor:</label>
-            <select id="vendor-select">
-                <option value="all">All Vendors</option>
-            </select>
         </div>
-    </div>
-        <!-- Product Display Container -->
+
+        <!-- Product Display -->
         <div id="products-container" class="products-container">Loading products...</div>
 
         <!-- Pagination Controls -->
         <div id="pagination-controls" class="pagination"></div>
-    </div>
+    </section>
 
+</main>
+
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section social-media">
@@ -73,14 +77,16 @@
     </div>
 </footer>
 
+<!-- JavaScript -->
 <script src="scripts.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         fetchProducts();
-        fetchVendors();  <!-- This will now work since fetchVendors() exists -->
+        fetchVendors();
         fetchCategories();
     });
 </script>
 
 </body>
 </html>
+
