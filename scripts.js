@@ -53,7 +53,7 @@ async function fetchVendors() {
     console.log("🔎 Fetching vendors...");
 
     try {
-        const response = await fetch("http://localhost:3000/vendors"); // Update if necessary
+        const response = await fetch("https://tangledoakweb.onrender.com/vendors"); // Update if needed
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
@@ -65,7 +65,6 @@ async function fetchVendors() {
     }
 }
 
-// Dummy function for displaying vendors (modify as needed)
 function displayVendors(vendors) {
     const vendorsContainer = document.getElementById("vendors-container");
     if (!vendorsContainer) {
@@ -80,6 +79,7 @@ function displayVendors(vendors) {
 document.addEventListener("DOMContentLoaded", () => {
     fetchVendors();
 });
+
 function groupBy(array, key) {
     return array.reduce((result, obj) => {
         (result[obj[key]] = result[obj[key]] || []).push(obj);

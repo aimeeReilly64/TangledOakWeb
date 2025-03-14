@@ -3,6 +3,12 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
+app.use(cors({
+    origin: ['https://superlative-vacherin-5e9b5d.netlify.app'], // Allow your frontend
+    methods: ['GET', 'POST'], // Define allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
+    credentials: true
+}));
 const app = express();
 const port = process.env.PORT || 3000;  //Render requires process.env.PORT
 
