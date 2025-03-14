@@ -1,18 +1,16 @@
-require('dotenv').config();
+rrequire('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
-app.use(cors({
-    origin: ['https://superlative-vacherin-5e9b5d.netlify.app'], // Allow your frontend
-    methods: ['GET', 'POST'], // Define allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
-    credentials: true
-}));
 const app = express();
-const port = process.env.PORT || 3000;  //Render requires process.env.PORT
+const port = process.env.PORT || 3000; // For deployment
 
-app.use(cors());
+app.use(cors({
+    origin: ['https://superlative-vacherin-5e9b5d.netlify.app'], // Allow frontend
+    methods: ['GET'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
@@ -35,18 +33,26 @@ app.get('/products', async (req, res) => {
 
         const data = await response.json();
 
+        // Extract relevant product details
         const formattedProducts = data.objects
             .filter(item => item.type === "ITEM" && item.item_data) // Ensure it's an ITEM
             .map(item => {
-                const firstVariation = item.item_data.variations?.[0]?.item_variation_data || {};
-                const vendorInfo = firstVariation.item_variation_vendor_infos?.[0]?.item_variation_vendor_info_data || {};
+                const variations = item.item_data.variations?.map(variation => ({
+                    id: variation.id,
+                    name: variation.item_variation_data.name || "Default",
+                    price: (variation.item_variation_data.price_money?.amount || 0) / 100, // Convert cents to dollars
+                    currency: variation.item_variation_data.price_money?.currency || "CAD"
+                })) || [];
+
+                const vendorInfo = item.item_data.variations?.[0]?.item_variation_data?.item_variation_vendor_infos?.[0]?.item_variation_vendor_info_data || {};
 
                 return {
                     id: item.id,
                     name: item.item_data.name,
                     description: item.item_data.description || "No description available.",
-                    price: (firstVariation.price_money?.amount || 0) / 100, // Convert cents to dollars
-                    currency: firstVariation.price_money?.currency || "CAD",
+                    price: (variations[0]?.price || 0), // Default to first variation's price
+                    currency: variations[0]?.currency || "CAD",
+                    variations: variations, // Include all variations
                     vendorId: vendorInfo.vendor_id || "Unknown Vendor",
                     imageUrl: item.item_data.ecom_image_uris?.[0] || 'placeholder.jpg',
                     ecomUri: item.item_data.ecom_uri || "#"
@@ -60,8 +66,7 @@ app.get('/products', async (req, res) => {
     }
 });
 
-
-// Do not remove - Render detects an open port
+// Start server
 app.listen(port, '0.0.0.0', () => {
     console.log(`✅ Server running on port ${port}`);
 });

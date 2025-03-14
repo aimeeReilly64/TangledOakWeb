@@ -37,11 +37,27 @@
     <div class="context-box">
         <h2>Shop by Category</h2>
         <div id="categories-container" class="categories-container">Loading categories...</div>
+        <!-- Sorting & Filtering UI -->
+        <div class="filters">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+                <option value="newest">Newest</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="price-high-low">Price: High to Low</option>
+            </select>
 
-        <h2>Newest Products</h2>
-        <div id="products-container" class="products-container">Loading products...</div>
+            <label for="vendor-select">Filter by Vendor:</label>
+            <select id="vendor-select">
+                <option value="all">All Vendors</option>
+            </select>
+        </div>
     </div>
-</div>
+        <!-- Product Display Container -->
+        <div id="products-container" class="products-container">Loading products...</div>
+
+        <!-- Pagination Controls -->
+        <div id="pagination-controls" class="pagination"></div>
+    </div>
 
 <footer class="footer">
     <div class="footer-container">
