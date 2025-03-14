@@ -34,6 +34,16 @@ function populateVendorFilter() {
 }
 
 // Fetch Products from API
+
+
+// Fetch Vendors and Populate Vendor Dropdown
+const VENDOR_NAMES = {
+    "6ITGGUAU4WFNODHC": "Bohemian Heart Crafts",
+    "XYZ123456789": "Crafty Corner",
+    "ABC987654321": "Rustic Designs"
+    // Add more vendors here if available
+};
+
 async function fetchProducts() {
     console.log("🔎 Fetching products...");
 
@@ -51,50 +61,19 @@ async function fetchProducts() {
         }
 
         products = data.products;
-        populateVendorFilter();
+
+        // Only call populateVendorFilter() if products exist
+        if (products.length > 0) {
+            populateVendorFilter();
+        }
+
         displayProducts();
     } catch (error) {
         console.error("🚨 Error fetching products:", error);
     }
 }
 
-// Fetch Vendors and Populate Vendor Dropdown
-const VENDOR_NAMES = {
-    "6ITGGUAU4WFNODHC": "Bohemian Heart Crafts",
-    "XYZ123456789": "Crafty Corner",
-    "ABC987654321": "Rustic Designs"
-    // Add more vendors here if available
-};
 
-async function fetchVendors() {
-    console.log("🔎 Fetching vendors...");
-    try {
-        const response = await fetch(API_URL); // Vendors come from products
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        if (!data.products) return;
-
-        const uniqueVendors = [...new Set(data.products.map(product => product.vendorId))];
-
-        const vendorSelect = document.getElementById("vendor-select");
-        if (!vendorSelect) {
-            console.error("❌ ERROR: Missing #vendor-select in the HTML.");
-            return;
-        }
-
-        vendorSelect.innerHTML = `<option value="all">All Vendors</option>`;
-        uniqueVendors.forEach(vendorId => {
-            const vendorName = VENDOR_NAMES[vendorId] || `Unknown Vendor (${vendorId})`;
-            const option = document.createElement("option");
-            option.value = vendorId;
-            option.textContent = vendorName;
-            vendorSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error("🚨 Error fetching vendors:", error);
-    }
-}
 // Fetch Categories (Placeholder)
 async function fetchCategories() {
     console.log("🔎 Fetching categories...");
