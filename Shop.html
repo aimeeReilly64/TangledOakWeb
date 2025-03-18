@@ -9,10 +9,6 @@
 <body>
 
 <!-- Header -->
-<!-- Hamburger Menu for Mobile -->
-<div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
-
-<!-- Header -->
 <div class="header">
     <a href="Index.html">
         <img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/>
@@ -29,120 +25,20 @@
     </form>
 
     <!-- Cart Icon -->
-    <a href="Cart.html">
+    <a href="https://the-tangled-oak-craft-collective.square.site/s/cart">
         <img src="views/images/cart.png" height="40" width="auto" alt="Shopping Cart"/>
     </a>
 </div>
-
 
 <!-- Main Shop Layout -->
 <main class="shop-container">
     <div class="sidebar">
         <h2>Browse by Category</h2>
-        <ul class="category-list">
-            <li class="category-dropdown">
-                <a href="https://the-tangled-oak-craft-collective.square.site/shop/jewelry" target="_blank">Jewelry</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Earrings</a></li>
-                    <li><a href="#">Bracelets</a></li>
-                    <li><a href="#">Rings</a></li>
-                    <li><a href="#">Necklaces</a></li>
-                </ul>
-            </li>
-
-            <li class="category-dropdown">
-                <a href="#">Clothing</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Shirts</a></li>
-                    <li><a href="#">Pants</a></li>
-                    <li><a href="#">Sweaters</a></li>
-                    <li><a href="#">Jackets</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">DIY Crafts + Supplies</a></li>
-
-            <li class="category-dropdown">
-                <a href="#">Home Decor</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Bedding</a></li>
-                    <li><a href="#">Candles</a></li>
-                    <li><a href="#">Wall Art</a></li>
-                    <li><a href="#">Mirrors</a></li>
-                </ul>
-            </li>
-
-            <li class="category-dropdown">
-                <a href="#">Bath + Body</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Soap & Scrubs</a></li>
-                    <li><a href="#">Bath Bombs</a></li>
-                    <li><a href="#">Skincare</a></li>
-                    <li><a href="#">Hair Care</a></li>
-                </ul>
-            </li>
-
-            <li class="category-dropdown">
-                <a href="#">Kitchen</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Cookware</a></li>
-                    <li><a href="#">Cutlery</a></li>
-                    <li><a href="#">Tableware</a></li>
-                    <li><a href="#">Kitchen Decor</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">Crystals + Healing</a></li>
-
-            <li class="category-dropdown">
-                <a href="#">Pets</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Cats</a></li>
-                    <li><a href="#">Dogs</a></li>
-                    <li><a href="#">Birds</a></li>
-                    <li><a href="#">Fish</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">Knives + Blades</a></li>
-
-            <li><a href="#">Gift Accessories & Paper Goods</a></li>
-            <li><a href="#">Music</a></li>
-            <li><a href="#">Pottery</a></li>
-
-            <li class="category-dropdown">
-                <a href="#">Accessories</a>
-                <ul class="subcategory-list">
-                    <li><a href="#">Jewelry Boxes</a></li>
-                    <li><a href="#">Scarves</a></li>
-                    <li><a href="#">Hats</a></li>
-                    <li><a href="#">Bags</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">Kids</a></li>
-            <li><a href="#">Digital Downloads</a></li>
-        </ul>
+        <ul class="category-list" id="categories-list">Loading categories...</ul>
         <h2>Shop by Vendor</h2>
         <a href="VendorShop.html">Shop All Vendors</a>
         <ul class="vendor-list">
-            <li><a href="VendorProfile.html">Bohemian Heart Crafts</a></li>
-            <li><a href="VendorProfile.html">Knit with Love by Carol</a></li>
-            <li><a href="VendorProfile.html">Peddie Pieces</a></li>
-            <li><a href="VendorProfile.html">Candy Dandy Crafts</a></li>
-            <li><a href="VendorProfile.html">The Knotty Celt</a></li>
-            <li><a href="VendorProfile.html">Mo's Craftworks</a></li>
-            <li><a href="VendorProfile.html">A&S Crystals</a></li>
-            <li><a href="VendorProfile.html">Tags & Tropics</a></li>
-            <li><a href="VendorProfile.html">Ocean Soul Clay</a></li>
-            <li><a href="VendorProfile.html">Knits by Marsha Ann</a></li>
-            <li><a href="VendorProfile.html">Muddy Paws Raw</a></li>
-            <li><a href="VendorProfile.html">Cheese + Stuffs</a></li>
-            <li><a href="VendorProfile.html">Soap & Seed</a></li>
-            <li><a href="VendorProfile.html">Top to Toe Knits</a></li>
-            <li><a href="VendorProfile.html">She Keeps Bees</a></li>
-            <li><a href="VendorProfile.html">Cosmically Connected</a></li>
-
+            <!-- Vendor links here -->
         </ul>
     </div>
 
@@ -167,7 +63,6 @@
         <!-- Pagination Controls -->
         <div id="pagination-controls" class="pagination"></div>
     </section>
-
 </main>
 
 <!-- Footer -->
@@ -186,16 +81,36 @@
 </footer>
 
 <!-- JavaScript -->
-<script src="scripts.js"></script>
 <script>
+    async function fetchCategories() {
+        try {
+            const response = await fetch('http://localhost:3000/categories');
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            const categories = await response.json();
+
+            const categoriesList = document.getElementById('categories-list');
+            categoriesList.innerHTML = '';
+
+            categories.forEach(category => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `https://the-tangled-oak-craft-collective.square.site/s/categories/${category.id}`;
+                link.textContent = category.name;
+                listItem.appendChild(link);
+                categoriesList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            const categoriesList = document.getElementById('categories-list');
+            categoriesList.innerHTML = 'Failed to load categories.';
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-        fetchProducts();
-        fetchVendors();
         fetchCategories();
+        // Add calls to fetchProducts() and fetchVendors() if these functions are defined
     });
 </script>
 
 </body>
 </html>
-
-
