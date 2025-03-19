@@ -113,12 +113,12 @@ app.get('/products', async (req, res) => {
                     name: item.item_data.name || "Unnamed Product",
                     description: item.item_data.description || "No description available",
                     price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                    category: item.item_data.category_id || "Unknown Category",
-                    vendor: item.item_data.vendor_id || "Unknown Vendor",
-                    image_url: imageUrl,
+                    updated_at: item.item_data.updated_at || "Unknown",
+                    image_url: imageUrl
                 };
             })
-            .filter(item => item !== null); // Remove null items
+            .filter(item => item !== null) // Remove null items
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)); // Sort by last updated
 
         res.json(formattedProducts);
     } catch (error) {
