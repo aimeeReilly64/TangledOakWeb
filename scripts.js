@@ -30,13 +30,21 @@ async function fetchProducts() {
 
             const priceInfo = document.createElement('p');
             priceInfo.innerHTML = `<strong>Price:</strong> $${price}`;
+
+            // Create image element and set src
             const img = document.createElement('img');
+            img.src = product.image_url || 'https://via.placeholder.com/150'; // Default if no image
+            img.alt = product.name || 'Product Image';
+            img.style.width = "150px"; // Adjust as needed
+            img.style.height = "150px";
+            img.style.objectFit = "cover";
 
             // Append elements to product div
             productElement.appendChild(img);
             productElement.appendChild(name);
             productElement.appendChild(description);
             productElement.appendChild(priceInfo);
+
             // Append product to container
             container.appendChild(productElement);
         });
