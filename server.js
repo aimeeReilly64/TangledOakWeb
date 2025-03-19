@@ -30,7 +30,6 @@ app.get('/products', async (req, res) => {
         if (!response.ok) {
             throw new Error(`Square API error! Status: ${response.status}`);
         }
-
         const data = await response.json();
 
         // Ensure data.objects exists and is an array
@@ -40,16 +39,25 @@ app.get('/products', async (req, res) => {
 
         // Extract relevant product details
         const formattedProducts = data.objects.map(item => {
-            if (!item.item_data || !item.item_data.variations || item.item_data.variations.length === 0) {
-                console.warn(`Missing variations for item ${item.id}`);
-                return null; // Skip items without variations
+            // Check if item_data and variations exist and are valid
+            if (!item.item_data || !Array.isArray(item.item_data.variations) || item.item_data.variations.length === 0) {
+                console.warn(`Item ${item.id} is missing variations.`);
+                return null; // Skip items without valid variations
+            }
+
+            // Find the first variation with valid price information
+            const validVariation = item.item_data.variations.find(variation => variation.item_variation_data && variation.item_variation_data.price_money);
+
+            if (!validVariation) {
+                console.warn(`Item ${item.id} has no variations with valid price information.`);
+                return null; // Skip items without valid price information
             }
 
             return {
                 upc: item.id,
                 name: item.item_data.name,
                 description: item.item_data.description || "No description available",
-                price: item.item_data.variations[0]?.price_money?.amount / 100 || 0, // Convert cents to dollars
+                price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
                 vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
                 category: item.item_data.category_ids?.[0] || "Uncategorized"
             };
