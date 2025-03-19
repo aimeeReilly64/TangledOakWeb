@@ -89,8 +89,8 @@ app.get('/products', async (req, res) => {
                     category: categories[item.item_data.category_id] || "Unknown Category", // ✅ Map category name
                     date: item.item_data.updated_at,
                     vendor: validVariation.item_variation_data.vendor_id || "Unknown Vendor", // ✅ Ensure vendor exists
-                    image_url: item.item_data.image_ids?.length
-                        ? `https://connect.squareup.com/v2/catalog/object/${item.item_data.image_ids[0]}`
+                    image_url: item.item_variation_data.image_ids?.length
+                        ? `https://connect.squareup.com/v2/catalog/object/${item.item_variation_data.image_ids[0]}`
                         : 'https://via.placeholder.com/150' // ✅ Handle missing images
                 };
             })
