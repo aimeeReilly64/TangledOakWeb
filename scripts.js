@@ -30,12 +30,14 @@ async function fetchProducts() {
 
             const priceInfo = document.createElement('p');
             priceInfo.innerHTML = `<strong>Price:</strong> $${price}`;
+            const img = document.createElement('img');
 
             // Append elements to product div
             productElement.appendChild(img);
             productElement.appendChild(name);
             productElement.appendChild(description);
             productElement.appendChild(priceInfo);
+            productElement.appendChild()
             // Append product to container
             container.appendChild(productElement);
         });

@@ -88,10 +88,11 @@ app.get('/products', async (req, res) => {
                     name: item.item_data.name || "Unnamed Product",
                     description: item.item_data.description || "No description available",
                     price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                    category: categories[item.item_data.category_id] || "Unknown Category",
+                    category: categories[item.item_variation_data.category_id] || "Unknown Category",
                     date: item.item_data.updated_at,
-                    vendor: vendors[validVariation.item_variation_data.vendor_id] || "Unknown Vendor",
-                    image_url: imageUrl
+                    vendor: item.item_variation_data.vendor_id,
+                    vendor_name: vendors[item.item_variation_data.vendor_id] || "Unknown Vendor",
+                    image_url: item.item_data.image_id,
                 };
             })
             .filter(item => item !== null); // Remove null items
