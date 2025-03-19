@@ -214,8 +214,13 @@
 </footer>
 
 <!-- JavaScript -->
-
+<!-- Load scripts.js before closing body tag -->
 <script src="scripts.js"></script>
-</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProducts();
+    });
+</script>
 
+</body>
 </html>
