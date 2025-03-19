@@ -20,9 +20,6 @@ const SQUARE_API_VERSION = "2025-02-20"; // Ensure this matches the current API 
 /** Fetch Products */
 app.get('/products', async (req, res) => {
     try {
-        // Fetch categories and vendors
-        const [categories, vendors] = await Promise.all([fetchCategories(), fetchVendors()]);
-
         const response = await fetch(SQUARE_API_URL, {
             method: "GET",
             headers: {
