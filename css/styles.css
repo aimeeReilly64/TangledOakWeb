@@ -337,18 +337,17 @@ p {
 .button:hover {
     background-color: #87a17a;
 }
-/* ======================== */
-/* Product Display */
-/* ======================== */
-
-.products-container {
+/* Product Grid Layout */
+#products-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
     gap: 20px;
     padding: 20px;
+    justify-content: center;
 }
 
-.product-card {
+/* Individual Product Styling */
+.product {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -358,18 +357,48 @@ p {
     transition: transform 0.2s;
 }
 
-.product-card:hover {
+.product:hover {
     transform: scale(1.05);
 }
 
+/* Product Images */
 .product-image {
-    width: 100%;
-    max-width: 80px;
-    height: auto;
+    width: 150px; /* Smaller image size */
+    height: 150px;
+    object-fit: cover;
     border-radius: 5px;
-    border-color: #87a17a;
+    margin-bottom: 10px;
 }
 
+/* Product Links */
+.product-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #4a7c59;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.product-link:hover {
+    background-color: #365c43;
+}
+
+/* Responsive: 2 products per row on smaller screens */
+@media (max-width: 768px) {
+    #products-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsive: 1 product per row on very small screens */
+@media (max-width: 480px) {
+    #products-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
 
 .footer {
     background-color: #abc29c;

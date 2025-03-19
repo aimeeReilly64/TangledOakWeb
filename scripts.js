@@ -28,14 +28,9 @@ async function fetchProducts() {
 
             // Create product elements
             const img = document.createElement('img');
-            img.src = product.image_url || 'https://via.placeholder.com/150';
+            img.src = product.image_url;
             img.alt = product.name || 'Product Image';
-            img.style.width = "200px";
-            img.style.height = "200px";
-            img.style.objectFit = "cover";
-            img.style.borderRadius = "8px";
-            img.style.display = "block";
-            img.style.margin = "0 auto";
+            img.className = "product-image"; // Styling via CSS
 
             const name = document.createElement('h2');
             name.textContent = product.name || 'Unnamed Product';
