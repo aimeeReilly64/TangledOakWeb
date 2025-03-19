@@ -149,7 +149,7 @@ p {
 }
 
 .sidebar .side-nav-small {
-    color: #d0c4b6;
+    color: #ffffff;
     text-decoration: none;
     margin-bottom: 10px;
     font-size: 12px;
@@ -158,7 +158,7 @@ p {
     cursor: pointer;
 }
 .sidebar .side-nav-smaller {
-    color: #d0c4b6;
+    color: #1a2f0f;
     text-decoration: none;
     margin-bottom: 10px;
     font-size: 11px;
@@ -166,7 +166,7 @@ p {
     position: absolute;
     left: 100%; /* Aligns the submenu to the right */
     top: 0;
-    background-color: #2D5C47;
+    background-color: #abc29c;
     padding-left: 10px;
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -202,7 +202,7 @@ p {
 .sidebar .side-nav-smaller-vendor a {
     display: block;
     padding: 5px 10px;
-    color: #d0c4b6;
+    color: #f1eeea;
     text-decoration: none;
 }
 

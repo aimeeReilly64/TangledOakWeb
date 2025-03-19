@@ -20,7 +20,7 @@ const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
 const fetchCategories = async () => {
     try {
         const response = await fetch(SQUARE_API_URL, {
-            method: "GET", // ✅ Corrected from POST to GET
+            method: "GET",
             headers: {
                 "Square-Version": "2025-02-20",
                 "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
@@ -50,7 +50,7 @@ app.get('/products', async (req, res) => {
         const categories = await fetchCategories();
 
         const response = await fetch(SQUARE_API_URL, {
-            method: "GET", // ✅ Corrected from POST to GET
+            method: "GET",
             headers: {
                 "Square-Version": "2025-02-20",
                 "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
@@ -63,14 +63,21 @@ app.get('/products', async (req, res) => {
         }
 
         const data = await response.json();
-
         if (!data.objects) {
             return res.json([]);
         }
 
+        // Extract image metadata
+        const imageMap = {};
+        data.objects
+            .filter(obj => obj.type === "IMAGE" && obj.image_data)
+            .forEach(img => {
+                imageMap[img.id] = img.image_data.url;
+            });
+
         // Extract and format product details
         const formattedProducts = data.objects
-            .filter(item => item.type === "ITEM" && item.item_data) // ✅ Filter only ITEM types
+            .filter(item => item.type === "ITEM" && item.item_data)
             .map(item => {
                 const validVariation = item.item_data.variations?.find(
                     variation => variation.item_variation_data?.price_money
@@ -85,16 +92,16 @@ app.get('/products', async (req, res) => {
                     upc: item.id,
                     name: item.item_data.name || "Unnamed Product",
                     description: item.item_data.description || "No description available",
-                    price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                    category: categories[item.item_data.category_id] || "Unknown Category", // ✅ Map category name
+                    price: validVariation.item_variation_data.price_money.amount / 100,
+                    category: categories[item.item_data.category_id] || "Unknown Category",
                     date: item.item_data.updated_at,
-                    vendor: validVariation.item_variation_data.vendor_id || "Unknown Vendor", // ✅ Ensure vendor exists
-                    image_url: item.item_variation_data.image_ids?.length
-                        ? `https://connect.squareup.com/v2/catalog/object/${item.item_variation_data.image_ids[0]}`
-                        : 'https://via.placeholder.com/150' // ✅ Handle missing images
+                    vendor: validVariation.item_variation_data.vendor_id || "Unknown Vendor",
+                    image_url: item.item_data.image_ids?.length
+                        ? imageMap[item.item_data.image_ids[0]] || 'https://via.placeholder.com/150'
+                        : 'https://via.placeholder.com/150' // ✅ Corrected image fetching
                 };
             })
-            .filter(item => item !== null); // Remove null items
+            .filter(item => item !== null);
 
         // Sort products by name
         formattedProducts.sort((a, b) => a.name.localeCompare(b.name));
