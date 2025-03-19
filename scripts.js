@@ -1,3 +1,4 @@
+const API_URL = "https://tangledoakweb.onrender.com/products";
 async function fetchProducts() {
     try {
         const response = await fetch(API_URL); // Use the full API URL
@@ -11,13 +12,19 @@ async function fetchProducts() {
         products.forEach(product => {
             const productElement = document.createElement('div');
             productElement.className = 'product';
+
+            // Check if the product has an image
+            const imageUrl = product.image_url ? product.image_url : 'fallback-image.jpg';
+
             productElement.innerHTML = `
+                <img src="${imageUrl}" alt="${product.name}" class="product-image">
                 <h2>${product.name}</h2>
                 <p>${product.description}</p>
-                <p>Price: $${product.price}</p>
-                <p>Category: ${product.category}</p>
-                <p>Vendor: ${product.vendor}</p>
+                <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
+                <p><strong>Category:</strong> ${product.category}</p>
+                <p><strong>Vendor:</strong> ${product.vendor}</p>
             `;
+
             container.appendChild(productElement);
         });
     } catch (error) {
@@ -26,5 +33,4 @@ async function fetchProducts() {
             '<p>Failed to load products. Please try again later.</p>';
     }
 }
-
 
