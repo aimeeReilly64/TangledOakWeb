@@ -28,7 +28,7 @@ async function fetchProducts() {
 
             // Create product elements
             const img = document.createElement('img');
-            img.src = product.image_url; // Now using full URLs
+            img.src = product.image_url;
             img.alt = product.name || 'Product Image';
             img.className = "product-image"; // Styling via CSS
 

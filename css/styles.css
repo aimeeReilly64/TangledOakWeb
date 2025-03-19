@@ -154,7 +154,7 @@ p {
     margin-bottom: 10px;
     font-size: 12px;
     display: block;
-    position: relative;
+    position: static;
     cursor: pointer;
 }
 .sidebar .side-nav-smaller {
