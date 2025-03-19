@@ -19,7 +19,7 @@ const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
 /** Fetch Categories */
 const fetchCategories = async () => {
     const response = await fetch(SQUARE_API_URL, {
-        method: "GET",  // ✅ Square API requires GET, not POST
+        method: "POST",  // ✅ Square API requires GET, not POST.. are you sure?
         headers: {
             "Square-Version": "2025-02-20",
             "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
@@ -38,27 +38,6 @@ const fetchCategories = async () => {
     }, {});
 };
 
-/** Fetch Images */
-const fetchImages = async () => {
-    const response = await fetch(SQUARE_API_URL, {
-        method: "GET",  // ✅ Square API requires GET
-        headers: {
-            "Square-Version": "2025-02-20",
-            "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
-            "Content-Type": "application/json"
-        }
-    });
-
-    const data = await response.json();
-    if (!data.objects) return {}; // Return empty if no images exist
-
-    return data.objects.reduce((map, obj) => {
-        if (obj.type === "IMAGE" && obj.image_data) {
-            map[obj.id] = obj.image_data.url; // ✅ Store image ID → URL
-        }
-        return map;
-    }, {});
-};
 
 /** Fetch Products */
 app.get('/products', async (req, res) => {
@@ -115,9 +94,11 @@ app.get('/products', async (req, res) => {
             }
 
             // Get image URL
+            //not working
             const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : 'https://placehold.co/150';
 
             // Get category name
+            //not working
             const categoryName = item.item_data.category_id ? categoryMap[item.item_data.category_id] : 'Uncategorized';
 
             return {
