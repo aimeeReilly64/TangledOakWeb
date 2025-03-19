@@ -306,7 +306,6 @@ p {
 .button:hover {
     background-color: #87a17a;
 }
-
 /* ======================== */
 /* Product Display */
 /* ======================== */
@@ -338,6 +337,7 @@ p {
     border-radius: 5px;
     border-color: #87a17a;
 }
+
 
 .footer {
     background-color: #abc29c;
