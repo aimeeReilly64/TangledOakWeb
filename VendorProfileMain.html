@@ -2,9 +2,178 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tangled Oak Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- Header -->
+<div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
+
+<div class="header">
+    <a href="Index.html">
+        <img src="views/images/wordsLogo2.png" height="105" width="auto" alt="Tangled Oak Word Logo"/>
+    </a>
+    <a href="Index.html" class="nav-link">Home</a>
+    <a href="Shop.html" class="nav-link">Shop</a>
+    <a href="About.html" class="nav-link">About Us</a>
+    <a href="ContactUs.html" class="nav-link">Contact Us</a>
+
+    <!-- Search Bar -->
+    <form class="search-bar">
+        <input type="text" placeholder="Search" id="search-input" />
+        <ul id="search-results" class="search-results-list"></ul>
+    </form>
+
+    <!-- Cart Icon -->
+    <a href="https://the-tangled-oak-craft-collective.square.site/s/cart">
+        <img src="views/images/cart.png" height="40" width="auto" alt="Shopping Cart"/>
+    </a>
+</div>
+
+<!-- Sidebar-->
+<div class="sidebar">
+    <li style="font-size: 15px; color: #abc29c ">Browse by Category </li> <br />
+    <li><a href="Jewlery.html" class="side-nav-link">Jewelry</a></li>
+    <li ><a href="https://the-tangled-oak-craft-collective.square.site/shop/earrings/2HY7SKOJKGJ3HYIYS7EUQWYJ" style="color :#e0d7cf; font-size: 12px">Earrings</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/necklaces/2HY7SKOJKGJ3HYIYS7EUQWYJ" style="color :#e0d7cf; font-size: 12px">Necklaces</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/rings/2HY7SKOJKGJ3HYIYS7EUQWYJ" style="color :#e0d7cf; font-size: 12px">Rings</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/bracelets/2HY7SKOJKGJ3HYIYS7EUQWYJ" style="color :#e0d7cf; font-size: 12px">Bracelets</a></li>
+    <br/>
+    <li><a href="Clothing.html" class="side-nav-link">Clothing</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/hats/YBJT4VDWDR7XNJUB5XLDUHBV?page=1&limit=30&sort_by=category_order&sort_order=asc" style="color :#e0d7cf; font-size: 12px">Hats</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/product/crochet-top/25?cp=true&sa=false&sbp=false&q=false&category_id=ESO6BVFLC6BDOMJTBZIS2Z4P" style="color :#e0d7cf; font-size: 12px">Tops</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/shawls-scarfs/XLZ6KAM4HONSUN27H45BJ2KF?page=1&limit=30&sort_by=category_order&sort_order=asc" style="color :#e0d7cf; font-size: 12px">Scarfs + Shawls</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/sweaters/F32TZXBRW7O2T4NGVPB4BUS6?page=1&limit=30&sort_by=category_order&sort_order=asc" style="color :#e0d7cf; font-size: 12px">Sweaters</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/socks-slippers/FHLUAWHFZZUCGJ4OEGFO5LQK?page=1&limit=30&sort_by=category_order&sort_order=asc" style="color :#e0d7cf; font-size: 12px">Socks + Slippers</a></li>
+    <li><a href="" style="color :#e0d7cf; font-size: 12px">Baby Clothing</a></li>
+    <br />
+
+    <li><a href="Accessories.html" class="side-nav-link">Accessories</a></li>
+    <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/bags/JY3SCUXBT2FTXDQF4B3QT5NM?page=1&limit=30&sort_by=category_order&sort_order=asc" style="color :#e0d7cf; font-size: 12px">Bags</a></li>
+    <li><a href="#">Keychains</a></li>
+    <li><a href="#">Hair</a></li>
+    <br />
+
+    <li><a href="Gifts.html" class="side-nav-link">Gifts</a></li><br />
+    <br />
+
+    <li><a href="HomeDecor.html" class="side-nav-link">Home Decor</a></li><br />
+    <br />
+
+    <li><a href="Crafting.html" class="side-nav-link">Crafting</a></li><br />
+    <li><a href="#">Crafting Tools</a></li>
+
+    <br /><br />
+
+    <li><h2>Shop by Vendor</h2></li>
+    <a href="VendorShop.html">Shop All Vendors</a>
+    <li><a href="VendorProfile1.html">Bohemian Heart Crafts</a></li>
+    <li><a href="VendorProfile2.html">Knit with Love by Carol</a></li>
+    <li><a href="VendorProfile3.html">Peddie Pieces</a></li>
+    <li><a href="VendorProfile4.html">Candy Dandy Crafts</a></li>
+    <li><a href="VendorProfile5.html">The Knotty Celt</a></li>
+    <li><a href="VendorProfile6.html">Mo's Craftworks</a></li>
+    <li><a href="VendorProfile7.html">A&S Crystals</a></li>
+    <li><a href="VendorProfile8.html">Tags & Tropics</a></li>
+    <li><a href="VendorProfile9.html">Ocean Soul Clay</a></li>
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+    <div class="context-box">
+        <h1>Shop by Vendor</h1>
+        <p>Discover our diverse range of crafting items from our trusted vendors.</p>
+    </div>
+
+    <div class="context-box" style ="width: 1000px;">
+        <h2 class="category-header">Shop by Vendor</h2>
+        <div class="category-grid">
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/necklaces/AXHZN23KZPSCVL22WT7Q34TL">
+                <img src="views/images/7.png" alt="Jewelry"/>
+                <span>Jewelry</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/hats/YBJT4VDWDR7XNJUB5XLDUHBV">
+                <img src="views/images/19.png" alt="Clothing"/>
+                <span>Clothing</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/home-decor/D2RQ5FYKCEI7CXHYHB4XQFPV">
+                <img src="views/images/4.png" alt="Home Decor"/>
+                <span>Home Decor</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/diy-crafts-supplies/KNYE63GNTDZGUZLCEDF44GFW">
+                <img src="views/images/3.png" alt="DIY Crafts"/>
+                <span>DIY Crafts + Supplies</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/accessories/V5APECK7NYS7PWC7ECED4IQA">
+                <img src="views/images/27.png" alt="Accessories"/>
+                <span>Accessories</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/crystals-healing/3JCIRV3O6OKSOS2DJRE434ZV">
+                <img src="views/images/15.png" alt="Crystals"/>
+                <span>Crystals</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/pantry-snacks/KKBPZZXAB227RNROCOQCRCOS">
+                <img src="views/images/14.png" alt="Kitchen"/>
+                <span>Kitchen + Pantry</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/soap-seed/WTE6Z45BXZOG5G36WNYPGOIW">
+                <img src="views/images/5.png" alt="Bath + Beauty"/>
+                <span>Bath + Beauty</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/pet-treats/CZOV46KREYL724BLJANKYECY">
+                <img src="views/images/2.png" alt="Pets"/>
+                <span>Pets</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/gift-accessories-paper-goods/UOSPT3NHOTUDLLCTBJMLHQ5R">
+                <img src="views/images/11.png" alt="Cards + Gifts"/>
+                <span>Cards + Gifting Supplies</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/baby-kids/MRW45JJYPFDBRB7VRDYQIVQX">
+                <img src="views/images/12.png" alt="Baby + Kids"/>
+                <span>Baby + Kids</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/music/SSC7ZEWVPCBG7EEI3W2BFNHU">
+                <img src="views/images/13.png" alt="Music"/>
+                <span>Music + Art</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/home-decor/D2RQ5FYKCEI7CXHYHB4XQFPV">
+                <img src="views/images/16.png" alt="Home + Office"/>
+                <span>Home + Office</span>
+            </a>
+
+            <a class="category-link" href="https://the-tangled-oak-craft-collective.square.site/shop/knotty-celt/7E3HI4JB2OXKO5ZDXZJSR46X">
+                <img src="views/images/10.png" alt="Knives + Axes"/>
+                <span>Knives + Axes</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+
+
+<!-- JavaScript -->
+<script src="scripts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProducts();
+    });
+</script>
 
 </body>
 </html>

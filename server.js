@@ -34,21 +34,21 @@ app.get('/products', async (req, res) => {
         const data = await response.json();
 
         // Extract relevant product details
-        const formattedProducts = data.objects
-            .filter(item => item.type === "ITEM" && item.item_data) // Ensure it's an ITEM
-            .map(item => {
-                const itemDetails = item.item_data;
-                return {
-                    id: item.id,
+        const formattedProducts = data.objects;
+        const itemDetails = item.item_data;
+
+        formattedProducts.forEach(item => {
+                item = {
+                    upc: item.id,
                     name: item.item_data.name,
                     description: item.item_data.description,
-                    price: itemDetails.variations[0].price_money.amount / 100 ,// Convert cents to dollars
+                    price: itemDetails.variations[0].price_money.amount / 100 , // Convert cents to dollars
                     vendor: itemDetails.vendor_ids  ||
                         `Vendor with ID ${itemDetails.vendor_ids[0]}` ,// Default to vendor ID if none provided
                     category: itemDetails.category_ids ||
                         `Category with ID ${itemDetails.category_ids[0]}` // Default to category ID if none provided
-
                 };
+
             });
          // Sort products by name in ascending order
         formattedProducts.sort((a, b) => a.name.localeCompare(b.name));
