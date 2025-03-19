@@ -15,12 +15,10 @@ app.use(express.json());
 
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
-const SQUARE_API_VERSION = "2025-02-20"; // Ensure this matches the current API version
+const SQUARE_API_VERSION = "2025-02-20";
 
 /** Fetch Images by Image ID */
-async function fetchImages(imageIds) {
-    if (!imageIds.length) return {};
-
+async function fetchImages() {
     const response = await fetch(SQUARE_API_URL, {
         method: "GET",
         headers: {
@@ -41,7 +39,7 @@ async function fetchImages(imageIds) {
     if (data.objects) {
         data.objects.forEach(obj => {
             if (obj.type === "IMAGE" && obj.image_data) {
-                images[obj.id] = obj.image_data.url;
+                images[obj.id] = obj.image_data.url; // Store image URLs by ID
             }
         });
     }
@@ -70,23 +68,8 @@ app.get('/products', async (req, res) => {
             return res.json([]);
         }
 
-        // Collect all image IDs
-        const imageIds = [];
-        data.objects.forEach(item => {
-            if (item.type === "ITEM" && item.item_data?.image_ids) {
-                imageIds.push(...item.item_data.image_ids);
-            }
-            if (item.item_data?.variations) {
-                item.item_data.variations.forEach(variation => {
-                    if (variation.item_variation_data?.image_ids) {
-                        imageIds.push(...variation.item_variation_data.image_ids);
-                    }
-                });
-            }
-        });
-
-        // Fetch all images
-        const images = await fetchImages(imageIds);
+        // Fetch all images from Square
+        const images = await fetchImages();
 
         // Extract and format product details
         const formattedProducts = data.objects
@@ -95,6 +78,7 @@ app.get('/products', async (req, res) => {
                 const validVariation = item.item_data.variations?.find(
                     variation => variation.item_variation_data?.price_money
                 );
+
                 if (!validVariation) {
                     console.warn(`Item ${item.id} has no valid price information.`);
                     return null;
@@ -113,12 +97,13 @@ app.get('/products', async (req, res) => {
                     name: item.item_data.name || "Unnamed Product",
                     description: item.item_data.description || "No description available",
                     price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                    updated_at: item.item_data.updated_at || "Unknown",
+                    updated_at: item.updated_at || item.item_data.updated_at || "Unknown",
                     image_url: imageUrl
                 };
             })
             .filter(item => item !== null) // Remove null items
-            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)); // Sort by last updated
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)) // Sort by newest first
+            .slice(0, 6); // Limit to 6 products
 
         res.json(formattedProducts);
     } catch (error) {
