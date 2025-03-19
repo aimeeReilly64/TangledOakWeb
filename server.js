@@ -61,21 +61,6 @@ app.get('/products', async (req, res) => {
 
         const data = await response.json();
 
-        // Maps to store categories and images
-        const categoryMap = {};
-        const imageMap = {};
-
-        // Populate maps with related objects
-        if (data.related_objects) {
-            data.related_objects.forEach(obj => {
-                if (obj.type === "CATEGORY" && obj.category_data) {
-                    categoryMap[obj.id] = obj.category_data.name;
-                } else if (obj.type === "IMAGE" && obj.image_data) {
-                    imageMap[obj.id] = obj.image_data.url;
-                }
-            });
-        }
-
         // Extract and format product details
         const formattedProducts = data.objects.map(item => {
             if (!item.item_data || !item.item_data.variations || item.item_data.variations.length === 0) {
@@ -93,27 +78,20 @@ app.get('/products', async (req, res) => {
                 return null; // Skip items without valid price information
             }
 
-            // Get image URL
-            //not working
-            const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : 'https://placehold.co/150';
-
-            // Get category name
-            //not working
-            const categoryName = item.item_data.category_id ? categoryMap[item.item_data.category_id] : 'Uncategorized';
-
             return {
                 upc: item.id,
                 name: item.item_data.name,
                 description: item.item_data.description || "No description available",
                 price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
                 category: categoryName,
-                image_url: imageUrl
+                date: item.item_data.updated_at,
+                vendor: item.item_variation_data.vendor_id , // Square API returns an array, so we use the first vendor if available.
+                image: item.item_data.image_ids?.[0],  // Square API returns an array, so we use the first image if available.
             };
         }).filter(item => item !== null); // Remove null items
 
         // Sort products by name in ascending order
         formattedProducts.sort((a, b) => a.name.localeCompare(b.name));
-
         res.json(formattedProducts);
     } catch (error) {
         console.error('Error fetching products:', error.message);
