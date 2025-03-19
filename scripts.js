@@ -37,7 +37,6 @@ async function fetchProducts() {
             productElement.appendChild(name);
             productElement.appendChild(description);
             productElement.appendChild(priceInfo);
-            productElement.appendChild()
             // Append product to container
             container.appendChild(productElement);
         });
