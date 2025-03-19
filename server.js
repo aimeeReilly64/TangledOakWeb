@@ -33,16 +33,30 @@ app.get('/products', async (req, res) => {
 
         const data = await response.json();
 
-        // Extract relevant product details
-        const formattedProducts = data.objects.map(item => ({
-            upc: item.id,
-            name: item.item_data.name,
-            description: item.item_data.description,
-            price: item.item_data.variations[0].price_money.amount / 100,
-            vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
-            category: item.item_data.category_ids?.[0] || "Unknown Category"
-        }));
+        // Ensure data.objects exists and is an array
+        if (!data.objects || !Array.isArray(data.objects)) {
+            throw new Error("Invalid product data format from Square API");
+        }
 
+        // Extract relevant product details
+        const formattedProducts = data.objects.map(item => {
+            if (!item.item_data || !item.item_data.variations || item.item_data.variations.length === 0) {
+                console.warn(`Missing variations for item ${item.id}`);
+                return null; // Skip items without variations
+            }
+
+            return {
+                upc: item.id,
+                name: item.item_data.name,
+                description: item.item_data.description || "No description available",
+                price: item.item_data.variations[0]?.price_money?.amount / 100 || 0, // Convert cents to dollars
+                vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
+                category: item.item_data.category_ids?.[0] || "Uncategorized"
+            };
+        }).filter(item => item !== null); // Remove null items
+
+        // Sort products by name in ascending order
+        formattedProducts.sort((a, b) => a.name.localeCompare(b.name));
         res.json(formattedProducts);
     } catch (error) {
         console.error('Error fetching products:', error.message);
