@@ -20,18 +20,8 @@ async function fetchProducts() {
             const productElement = document.createElement('div');
             productElement.className = 'product';
 
-            // Use placeholder if image_url is missing
-            const imageUrl = product.image_url || 'https://via.placeholder.com/150';
-
             // Ensure price is valid
             const price = typeof product.price === 'number' ? product.price.toFixed(2) : 'N/A';
-
-            // Create elements safely
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = product.name || "Product Image";
-            img.className = 'product-image';
-
             const name = document.createElement('h2');
             name.textContent = product.name || 'Unnamed Product';
 
@@ -41,20 +31,11 @@ async function fetchProducts() {
             const priceInfo = document.createElement('p');
             priceInfo.innerHTML = `<strong>Price:</strong> $${price}`;
 
-            const category = document.createElement('p');
-            category.innerHTML = `<strong>Category:</strong> ${product.category || 'Unknown'}`;
-
-            const vendor = document.createElement('p');
-            vendor.innerHTML = `<strong>Vendor:</strong> ${product.vendor || 'Unknown Vendor'}`;
-
             // Append elements to product div
             productElement.appendChild(img);
             productElement.appendChild(name);
             productElement.appendChild(description);
             productElement.appendChild(priceInfo);
-            productElement.appendChild(category);
-            productElement.appendChild(vendor);
-
             // Append product to container
             container.appendChild(productElement);
         });
