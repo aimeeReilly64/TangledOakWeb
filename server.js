@@ -17,36 +17,6 @@ const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
 const SQUARE_API_VERSION = "2025-02-20";
 
-/** Fetch Images by Image ID */
-async function fetchImages() {
-    const response = await fetch(SQUARE_API_URL, {
-        method: "GET",
-        headers: {
-            "Square-Version": SQUARE_API_VERSION,
-            "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
-            "Content-Type": "application/json"
-        }
-    });
-
-    if (!response.ok) {
-        console.error("Failed to fetch images from Square.");
-        return {};
-    }
-
-    const data = await response.json();
-    const images = {};
-
-    if (data.objects) {
-        data.objects.forEach(obj => {
-            if (obj.type === "IMAGE" && obj.image_data) {
-                images[obj.id] = obj.image_data.url; // Store image URLs by ID
-            }
-        });
-    }
-
-    return images;
-}
-
 /** Fetch Products */
 app.get('/products', async (req, res) => {
     try {
@@ -68,37 +38,33 @@ app.get('/products', async (req, res) => {
             return res.json([]);
         }
 
-        // Fetch all images from Square
-        const images = await fetchImages();
-
         // Extract and format product details
         const formattedProducts = data.objects
             .filter(item => item.type === "ITEM" && item.item_data)
             .map(item => {
-                const validVariation = item.item_data.variations?.find(
-                    variation => variation.item_variation_data?.price_money
-                );
+                const variations = item.item_data.variations || [];
+                const firstVariation = variations.find(v => v.item_variation_data?.price_money) || {};
+                const priceMoney = firstVariation.item_variation_data?.price_money || { amount: 0, currency: "CAD" };
 
-                if (!validVariation) {
-                    console.warn(`Item ${item.id} has no valid price information.`);
-                    return null;
-                }
-
-                // Determine image URL
+                // Find image sources
                 let imageUrl = 'https://via.placeholder.com/150'; // Default placeholder
                 if (item.item_data.image_ids?.length) {
-                    imageUrl = images[item.item_data.image_ids[0]] || imageUrl;
-                } else if (validVariation.item_variation_data.image_ids?.length) {
-                    imageUrl = images[validVariation.item_variation_data.image_ids[0]] || imageUrl;
+                    imageUrl = `https://square-cdn.com/square/${item.item_data.image_ids[0]}`;
+                } else if (item.item_data.ecom_image_uris?.length) {
+                    imageUrl = item.item_data.ecom_image_uris[0];
+                } else if (firstVariation.item_variation_data?.image_ids?.length) {
+                    imageUrl = `https://square-cdn.com/square/${firstVariation.item_variation_data.image_ids[0]}`;
                 }
 
                 return {
-                    upc: item.id,
+                    id: item.id,
                     name: item.item_data.name || "Unnamed Product",
-                    description: item.item_data.description || "No description available",
-                    price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
+                    description: item.item_data.description_plaintext || "No description available",
+                    price: priceMoney.amount / 100, // Convert cents to dollars
+                    currency: priceMoney.currency,
                     updated_at: item.updated_at || item.item_data.updated_at || "Unknown",
-                    image_url: imageUrl
+                    image_url: imageUrl,
+                    product_url: item.item_data.ecom_uri || "#" // E-commerce product link
                 };
             })
             .filter(item => item !== null) // Remove null items
