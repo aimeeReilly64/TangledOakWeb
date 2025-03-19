@@ -138,33 +138,42 @@ p {
     list-style-type: none;
     z-index: 10;
 }
+}/* ======================== */
+/* Sidebar Navigation Dropdown */
+/* ======================== */
 
-.sidebar .side-nav-link {
-    color: #fff;
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 14px;
-    display: block;
-}
 .sidebar .side-nav-small {
-    color: #d0c4b6;
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 12px;
-    display: block;
-}
-.sidebar .side-nav-smaller {
-    color: #d0c4b6;
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 11px;
-    display: block;
+    position: relative;
+    cursor: pointer;
 }
 
-.sidebar .side-nav-link:hover,
-.sidebar .side-nav-link:active {
-    color: #87a17a;
+.sidebar .side-nav-smaller {
+    display: none; /* Hidden by default */
+    position: absolute;
+    left: 100%; /* Aligns the submenu to the right */
+    top: 0;
+    background-color: #2D5C47;
+    padding-left: 10px;
+    min-width: 150px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+.sidebar .side-nav-small:hover + .side-nav-smaller,
+.sidebar .side-nav-small:focus + .side-nav-smaller {
+    display: block; /* Shows submenu on hover */
+}
+
+.sidebar .side-nav-smaller a {
+    display: block;
+    padding: 5px 10px;
+    color: #d0c4b6;
+    text-decoration: none;
+}
+
+.sidebar .side-nav-smaller a:hover {
+    background-color: #365c43;
+}
+
 
 .sidebar .category-list {
     color: #e0d7cf;
