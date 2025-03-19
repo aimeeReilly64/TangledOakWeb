@@ -363,8 +363,8 @@ p {
 
 /* Product Images */
 .product-image {
-    width: 150px; /* Smaller image size */
-    height: 150px;
+    width: 120px; /* Smaller image size */
+    height: 120px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
