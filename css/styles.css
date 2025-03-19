@@ -327,7 +327,8 @@ p {
 }
 
 .product-image {
-    width: 20%;
+    width: 100%;
+    max-width: 80px;
     height: auto;
     border-radius: 5px;
     border-color: #87a17a;

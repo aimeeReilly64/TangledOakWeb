@@ -37,11 +37,19 @@ const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
                     throw new Error("Invalid product data format from Square API");
                 }
 
+
                 // Map image IDs to URLs
                 const imageMap = {};
+                const categoryMap = {};
+                const vendorMap = {};
+
                 data.objects.forEach(obj => {
                     if (obj.type === "IMAGE" && obj.image_data) {
                         imageMap[obj.id] = obj.image_data.url;
+                    } else if (obj.type === "CATEGORY" && obj.category_data) {
+                        categoryMap[obj.id] = obj.category_data.name;
+                    } else if (obj.type === "VENDOR" && obj.vendor_data) {
+                        vendorMap[obj.id] = obj.vendor_data.name;
                     }
                 });
 
@@ -67,13 +75,18 @@ const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
                         // Get first valid image
                         const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : null;
 
+                        // Resolve category and vendor names
+                        const categoryName = item.item_data.category_id ? categoryMap[item.item_data.category_id] || "Uncategorized" : "Uncategorized";
+                        const vendorName = item.item_data.vendor_ids?.[0] ? vendorMap[item.item_data.vendor_ids[0]] || "Unknown Vendor" : "Unknown Vendor";
+
                         return {
                             upc: item.id,
                             name: item.item_data.name,
                             description: item.item_data.description || "No description available",
                             price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                            vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
-                            category: item.item_data.category_ids?.[0] || "Uncategorized",
+                            date: item.item_data.updated_at,
+                            category: categoryName,
+                            vendor: vendorName,
                             image_url: imageUrl || "https://via.placeholder.com/150", // Fallback image
                         };
                     })
