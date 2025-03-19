@@ -21,18 +21,21 @@ async function fetchProducts() {
             productElement.className = 'product';
 
             // Ensure price is valid
-            const price = typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : 'N/A';
+            const price = typeof product.price === 'number' ? `$${product.price.toFixed(2)} ${product.currency}` : 'N/A';
 
             // Format updated date
-            const updatedDate = product.updated_at ? new Date(product.updated_at).toLocaleDateString() : 'Unknown';
+            const updatedDate = product.updated_at ? new Date(product.updated_at).toLocaleString() : 'Unknown';
 
             // Create product elements
             const img = document.createElement('img');
             img.src = product.image_url || 'https://via.placeholder.com/150';
             img.alt = product.name || 'Product Image';
-            img.style.width = "150px";
-            img.style.height = "150px";
+            img.style.width = "200px";
+            img.style.height = "200px";
             img.style.objectFit = "cover";
+            img.style.borderRadius = "8px";
+            img.style.display = "block";
+            img.style.margin = "0 auto";
 
             const name = document.createElement('h2');
             name.textContent = product.name || 'Unnamed Product';
@@ -46,12 +49,20 @@ async function fetchProducts() {
             const updatedInfo = document.createElement('p');
             updatedInfo.innerHTML = `<strong>Last Updated:</strong> ${updatedDate}`;
 
+            // Link to product page
+            const productLink = document.createElement('a');
+            productLink.href = product.product_url;
+            productLink.textContent = "View Product";
+            productLink.target = "_blank";
+            productLink.className = "product-link";
+
             // Append elements to product div
             productElement.appendChild(img);
             productElement.appendChild(name);
             productElement.appendChild(description);
             productElement.appendChild(priceInfo);
             productElement.appendChild(updatedInfo);
+            productElement.appendChild(productLink);
 
             // Append product to container
             container.appendChild(productElement);
@@ -65,4 +76,3 @@ async function fetchProducts() {
 
 // Ensure fetch is called when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", fetchProducts);
-
