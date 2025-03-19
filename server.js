@@ -63,61 +63,77 @@ const fetchImages = async () => {
 /** Fetch Products */
 app.get('/products', async (req, res) => {
     try {
-        const [categoryMap, imageMap] = await Promise.all([
-            fetchCategories(),
-            fetchImages()
-        ]);
-
         const response = await fetch(SQUARE_API_URL, {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Square-Version": "2025-02-20",
                 "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
                 "Content-Type": "application/json"
-            }
+            },
+            body: JSON.stringify({
+                object_types: ["ITEM"],
+                include_related_objects: true
+            })
         });
 
+        if (!response.ok) {
+            throw new Error(`Square API error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
-        if (!data.objects) throw new Error("Invalid product data format from Square API");
 
-        const products = data.objects
-            .filter(item => item.type === "ITEM") // ✅ Only process items
-            .map(item => {
-                if (!item.item_data || !item.item_data.variations || item.item_data.variations.length === 0) {
-                    console.warn(`Item ${item.id} is missing variations.`);
-                    return null; // Skip items without variations
+        // Maps to store categories and images
+        const categoryMap = {};
+        const imageMap = {};
+
+        // Populate maps with related objects
+        if (data.related_objects) {
+            data.related_objects.forEach(obj => {
+                if (obj.type === "CATEGORY" && obj.category_data) {
+                    categoryMap[obj.id] = obj.category_data.name;
+                } else if (obj.type === "IMAGE" && obj.image_data) {
+                    imageMap[obj.id] = obj.image_data.url;
                 }
+            });
+        }
 
-                // Get first variation with price
-                const validVariation = item.item_data.variations.find(
-                    variation => variation.item_variation_data && variation.item_variation_data.price_money
-                );
+        // Extract and format product details
+        const formattedProducts = data.objects.map(item => {
+            if (!item.item_data || !item.item_data.variations || item.item_data.variations.length === 0) {
+                console.warn(`Item ${item.id} is missing variations.`);
+                return null; // Skip items without valid variations
+            }
 
-                if (!validVariation) {
-                    console.warn(`Item ${item.id} has no valid price.`);
-                    return null;
-                }
+            // Find the first variation with valid price information
+            const validVariation = item.item_data.variations.find(
+                variation => variation.item_variation_data && variation.item_variation_data.price_money
+            );
 
-                // Get image URL (if exists)
-                const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : null;
+            if (!validVariation) {
+                console.warn(`Item ${item.id} has no variations with valid price information.`);
+                return null; // Skip items without valid price information
+            }
 
-                // Get category name
-                const categoryName = item.item_data.category_id
-                    ? categoryMap[item.item_data.category_id] || "Uncategorized"
-                    : "Uncategorized";
+            // Get image URL
+            const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : 'https://placehold.co/150';
 
-                return {
-                    upc: item.id,
-                    name: item.item_data.name,
-                    description: item.item_data.description || "No description available",
-                    price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                    category: categoryName,
-                    image_url: imageUrl || "https://placehold.co/150", // ✅ Fallback image
-                };
-            })
-            .filter(item => item !== null); // Remove null items
+            // Get category name
+            const categoryName = item.item_data.category_id ? categoryMap[item.item_data.category_id] : 'Uncategorized';
 
-        res.json(products);
+            return {
+                upc: item.id,
+                name: item.item_data.name,
+                description: item.item_data.description || "No description available",
+                price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
+                category: categoryName,
+                image_url: imageUrl
+            };
+        }).filter(item => item !== null); // Remove null items
+
+        // Sort products by name in ascending order
+        formattedProducts.sort((a, b) => a.name.localeCompare(b.name));
+
+        res.json(formattedProducts);
     } catch (error) {
         console.error('Error fetching products:', error.message);
         res.status(500).json({ message: 'Error fetching products' });
