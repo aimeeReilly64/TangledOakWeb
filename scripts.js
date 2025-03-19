@@ -23,6 +23,7 @@ async function fetchProducts() {
                 <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
                 <p><strong>Category:</strong> ${product.category}</p>
                 <p><strong>Vendor:</strong> ${product.vendor}</p>
+               
             `;
 
             container.appendChild(productElement);
