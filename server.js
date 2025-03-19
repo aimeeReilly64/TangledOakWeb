@@ -15,21 +15,6 @@ app.use(express.json());
 
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/list";
-
-app.get('/products', async (req, res) => {
-    try {
-        const response = await fetch(SQUARE_API_URL, {
-            method: "GET",
-            headers: {
-                "Square-Version": "2025-02-20",
-                "Authorization": `Bearer ${SQUARE_ACCESS_TOKEN}`,
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Square API error! Status: ${response.status}`);
-        }
         app.get('/products', async (req, res) => {
             try {
                 const response = await fetch(SQUARE_API_URL, {
@@ -55,7 +40,7 @@ app.get('/products', async (req, res) => {
                 // Map image IDs to URLs
                 const imageMap = {};
                 data.objects.forEach(obj => {
-                    if (obj.type === "IMAGE") {
+                    if (obj.type === "IMAGE" && obj.image_data) {
                         imageMap[obj.id] = obj.image_data.url;
                     }
                 });
@@ -79,7 +64,7 @@ app.get('/products', async (req, res) => {
                             return null; // Skip items without valid price information
                         }
 
-                        // Find the first valid image
+                        // Get first valid image
                         const imageUrl = item.item_data.image_ids?.[0] ? imageMap[item.item_data.image_ids[0]] : null;
 
                         return {
@@ -89,7 +74,7 @@ app.get('/products', async (req, res) => {
                             price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
                             vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
                             category: item.item_data.category_ids?.[0] || "Uncategorized",
-                            image_url: imageUrl || "https://via.placeholder.com/150", // Default placeholder image
+                            image_url: imageUrl || "https://via.placeholder.com/150", // Fallback image
                         };
                     })
                     .filter(item => item !== null); // Remove null items
@@ -100,19 +85,6 @@ app.get('/products', async (req, res) => {
                 res.json(formattedProducts);
             } catch (error) {
                 console.error('Error fetching products:', error.message);
-                res.status(500).json({message: 'Error fetching products'});
+                res.status(500).json({ message: 'Error fetching products' });
             }
         });
-
-
-// Ensure server starts properly
-        app.listen(port, () => {
-            console.log(`Server running at http://localhost:${port}`);
-        });
-    }
-    catch (error) {
-        console.error('Error setting up server:', error.message);
-        res.status(500).json({message: 'Error setting up server'});
-        process.exit(1);
-    }
-});
