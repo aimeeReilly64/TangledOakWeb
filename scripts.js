@@ -20,7 +20,7 @@ async function fetchProducts() {
             const productElement = document.createElement('div');
             productElement.className = 'product';
 
-            // Ensure valid image URL
+            // Use placeholder if image_url is missing
             const imageUrl = product.image_url || 'https://via.placeholder.com/150';
 
             // Ensure price is valid
@@ -67,4 +67,3 @@ async function fetchProducts() {
 
 // Ensure fetch is called when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", fetchProducts);
-
