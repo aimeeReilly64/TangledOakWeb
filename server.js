@@ -58,8 +58,9 @@ app.get('/products', async (req, res) => {
                 name: item.item_data.name,
                 description: item.item_data.description || "No description available",
                 price: validVariation.item_variation_data.price_money.amount / 100, // Convert cents to dollars
-                vendor: item.item_data.vendor_ids?.[0] || "Unknown Vendor",
-                category: item.item_data.category_ids?.[0] || "Uncategorized"
+                vendor: item.item_data.vendor_id?.[0] || "Unknown Vendor",
+                category: item.item_data.category_id?.[0] || "Uncategorized",
+                date: item.item_data.date || "No date available",
             };
         }).filter(item => item !== null); // Remove null items
 
