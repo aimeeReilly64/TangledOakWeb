@@ -68,6 +68,17 @@ async function fetchProducts() {
             '<p>⚠️ Failed to load products. Please try again later.</p>';
     }
 }
+document.querySelectorAll(".side-nav-small").forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+        let submenu = item.querySelector(".side-nav-smaller");
+        if (submenu) submenu.style.display = "block";
+    });
+
+    item.addEventListener("mouseleave", () => {
+        let submenu = item.querySelector(".side-nav-smaller");
+        if (submenu) submenu.style.display = "none";
+    });
+});
 
 // Ensure fetch is called when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", fetchProducts);
