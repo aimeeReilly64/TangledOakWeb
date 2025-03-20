@@ -131,6 +131,7 @@ p {
     box-shadow: 0 4px 8px rgb(26, 47, 15);
     font-size: 14px;
     list-style-type: none;
+    padding-top: 80px; /* Adjust if necessary */
     z-index: 10;
 }
 
@@ -166,7 +167,7 @@ p {
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: none; /* Initially hidden */
-    z-index: 20; /* Ensures submenu is above other elements */
+    z-index: 999; /* Ensure it appears above the header */
 }
 
 .sidebar .side-nav-small:hover > .side-nav-smaller,
@@ -185,24 +186,24 @@ p {
     background-color: #365c43;
     color: #fff;
 }
-
-/* Fix vendor submenu */
-.sidebar .side-nav-smaller-vendor {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #abc29c;
-    padding: 10px;
-    min-width: 150px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 20;
+/* Ensures vendor list is properly styled in the sidebar */
+.vendor-list {
+    list-style-type: none;
+    padding-left: 15px;
+    margin-top: 5px;
 }
 
-.sidebar .side-nav-link:hover + .side-nav-smaller-vendor {
+.vendor-list li a {
     display: block;
+    font-size: 12px;
+    color: #fdfdfe;
+    text-decoration: none;
+    padding: 5px 0;
 }
 
+.vendor-list li a:hover {
+    color: #ffffff;
+}
 /* ======================== */
 /* Header */
 /* ======================== */
@@ -371,7 +372,7 @@ p {
     padding: 30px 0;
     text-align: center;
     color: #1a2f0f;
-    font-size: 13px;
+    font-size: 12px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 0 2px 5px rgb(26, 47, 15);
@@ -384,6 +385,8 @@ p {
 
 .footer-container {
     display: flex;
+    max-height: 300px;
+    align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
     max-width: 1200px;
@@ -410,8 +413,8 @@ p {
 }
 
 .social-icons a img {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     margin: 0 8px;
     transition: transform 0.3s;
 }
@@ -426,8 +429,8 @@ p {
     color: #1a2f0f;
 }
 .img {
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     margin: 0 8px;
     transition: transform 0.3s;
 }
