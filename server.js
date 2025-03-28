@@ -111,6 +111,7 @@ app.get('/products', async (req, res) => {
     }
 });
 
+
 /** Start the Server */
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

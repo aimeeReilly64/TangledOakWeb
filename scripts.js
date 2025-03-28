@@ -1,5 +1,4 @@
 const API_URL = "https://tangledoakweb.onrender.com/products";
-
 async function fetchProducts() {
     try {
         const response = await fetch(API_URL);
@@ -79,6 +78,50 @@ document.querySelectorAll(".side-nav-small").forEach((item) => {
         if (submenu) submenu.style.display = "none";
     });
 });
+async function searchProducts(query) {
+    const response = await fetch(API_URL);
+    const products = await response.json();
 
-// Ensure fetch is called when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", fetchProducts);
+    const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.description.toLowerCase().includes(query.toLowerCase())
+    );
+
+    displaySearchResults(filtered);
+}
+
+function displaySearchResults(results) {
+    const container = document.getElementById("products-container");
+    container.innerHTML = "";
+
+    if (results.length === 0) {
+        container.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+
+    results.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p>$${product.price.toFixed(2)}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchProducts();
+
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const query = e.target.value;
+            if (query.length >= 2) {
+                searchProducts(query);
+            }
+        });
+    }
+});
