@@ -19,14 +19,25 @@ body {
 /* ======================== */
 /* Layout Container */
 /* ======================== */
-.main-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-left: 200px;
-    margin-right: auto;
-    max-width: 1000px;
+.main-content {
+    padding-left: 20px;
+    padding-right: 20px;
 }
+
+.main-wrapper {
+    padding: 20px;
+    margin-left: 200px;
+    max-width: 1000px;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 900px) {
+    .main-wrapper {
+        margin-left: 0;
+        padding: 10px;
+    }
+}
+
 
 /* ======================== */
 /* Sidebar */
@@ -38,7 +49,7 @@ body {
     top: 0;
     padding: 20px;
     width: 200px;
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     display: flex;
@@ -48,7 +59,7 @@ body {
     font-size: 14px;
     list-style-type: none;
     padding-top: 80px;
-    z-index: 10;
+    z-index: 1001;
 }
 
 .sidebar ul {
@@ -75,7 +86,7 @@ body {
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: none;
-    z-index: 999;
+    z-index: 1100;
 }
 
 .sidebar .side-nav-small:hover > .side-nav-smaller,
@@ -153,7 +164,43 @@ body {
         display: block;
     }
 }
+.context-box {
+    background-color: #e0d7cf;
+    border: 1px solid #d0c4b6;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(175, 192, 168, 0.73);
+    transition: box-shadow 0.3s ease;
+    text-align: center;
+}
 
+.background-logo {
+    position: fixed; /* stays in place even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 200vh;
+    background-image: url("views/images/logoTransp (2).png");
+    background-repeat: repeat-x;
+    background-position: center center;
+    background-size: contain; /* or use 'cover' for full scaling */
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+.context-box-box:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+    .context-box-box-box {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+}
 /* ======================== */
 /* Header */
 /* ======================== */
@@ -163,7 +210,7 @@ body {
     background-color: #abc29c;
     padding: 15px;
     box-shadow: 0 2px 5px rgb(26, 47, 15);
-    z-index: 100;
+    z-index: 10;
     color: #d0c4b6;
     justify-content: space-between;
     display: flex;
@@ -184,28 +231,6 @@ body {
     color: #d0c4b6;
 }
 
-/* ======================== */
-/* Main Content */
-/* ======================== */
-.main-content {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-    text-align: center;
-}
-
-/* ======================== */
-/* Content Blocks */
-/* ======================== */
-.context-box {
-    background-color: rgb(224, 215, 207);
-    border: 1px solid #2D5C47;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgb(26, 47, 15);
-    margin-bottom: 20px;
-}
 
 /* ======================== */
 /* Hero & Images */
@@ -315,4 +340,56 @@ body {
     margin-top: 10px;
     font-size: 8px;
     color: #1a2f0f;
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.category-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.category-link img {
+    max-width: 60px; /* Controls logo size */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-link img:hover {
+    transform: scale(1.1);
+}
+
+.category-link span {
+    margin-top: 8px;
+    font-size: 14px;
+}
+@media (max-width: 768px) {
+    .category-link img {
+        max-width: 50px;
+    }
+    .category-link span {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-link img {
+        max-width: 40px;
+    }
+    .category-link span {
+        font-size: 12px;
+    }
 }

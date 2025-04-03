@@ -44,7 +44,6 @@ function renderProducts(products) {
             <h2>${product.name || 'Unnamed Product'}</h2>
             <p>${product.description || 'No description available.'}</p>
             <p><strong>Price:</strong> ${price}</p>
-            <p><strong>Last Updated:</strong> ${updatedDate}</p>
             <a href="${product.product_url}" class="product-link" target="_blank">View Product</a>
         `;
 
