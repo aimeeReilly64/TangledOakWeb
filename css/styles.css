@@ -300,7 +300,7 @@ body {
 /* Hero & Images */
 /* ======================== */
 .hero-img {
-    width: 100%;
+    width: 350px;
     height: 370px;
     border-radius: 5px;
     position: relative;
