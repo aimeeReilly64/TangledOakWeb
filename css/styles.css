@@ -15,6 +15,29 @@ body {
     color: #333;
     min-height: 100vh;
 }
+.product-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    font-family: sans-serif;
+}
 
 /* ======================== */
 /* Layout Container */
@@ -86,7 +109,7 @@ body {
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: none;
-  
+
 }
 
 .sidebar .side-nav-small:hover > .side-nav-smaller,
