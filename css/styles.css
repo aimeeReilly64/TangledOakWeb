@@ -86,7 +86,7 @@ body {
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: none;
-    z-index: 1000;
+  
 }
 
 .sidebar .side-nav-small:hover > .side-nav-smaller,
