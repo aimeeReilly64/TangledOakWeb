@@ -127,6 +127,7 @@ body {
 .sidebar .side-nav-smaller a:hover {
     background-color: #365c43;
     color: #fff;
+    transform: translateY(-2px);
 }
 
 .vendor-list {
