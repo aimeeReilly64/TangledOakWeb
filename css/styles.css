@@ -535,6 +535,7 @@ body {
     height: 10%;
     animation: fall 5s linear infinite;
     animation-delay: calc(-0.5s * var(--i));
+    transform: translateY(120vh) rotate(calc(20deg * var(--i)));
     transform-origin: bottom;
     opacity: 0.3;
 }
@@ -543,8 +544,4 @@ body {
     to {
         transform: translateY(120vh) rotate(360deg);
     }
-}
-@keyframes sway {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(30px); }
 }
