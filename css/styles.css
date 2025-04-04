@@ -423,6 +423,11 @@ body {
     margin: 12px auto;
 }
 
+.product-title{
+    color: #2D5C47;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
 .product-card:hover {
     transform: translateY(-5px);
 }
