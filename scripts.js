@@ -122,9 +122,23 @@ function createLeaf() {
     // Random animation duration and delay
     leaf.style.animationDuration = `${8 + Math.random() * 5}s, ${3 + Math.random() * 2}s`;
     leaf.style.animationDelay = `${Math.random() * 5}s`;
-
     leafContainer.appendChild(leaf);
+    leaf.addEventListener('animationend', () => {
+        leaf.classList.remove('falling');
+    });
+    leaf.classList.add('falling');
+    // After falling, add a new leaf every 2 seconds
+    setTimeout(createLeaf, 2000);
+    // After 15 seconds, remove the leaf completely to save memory
+    setTimeout(() => {
+        leaf.remove();
+    })
+    // After 15 seconds, remove the leaf completely to save memory
+    setTimeout(() => {
+        leaf.remove();
+    }, 15000);
 
+// Initialize
     // Remove the leaf after it falls to keep DOM clean
     setTimeout(() => {
         leaf.remove();
