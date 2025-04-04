@@ -528,19 +528,20 @@ body {
     overflow: hidden;
     z-index: 2;
 }
-
 .leaf {
     position: absolute;
     width: 10%;
     height: 10%;
-    animation: fall 5s linear infinite;
     animation-delay: calc(-0.5s * var(--i));
-    transform: translateY(120vh) rotate(calc(20deg * var(--i)));
+    animation: fall calc(5s + 2s * var(--i)) linear infinite;
+    transform: translateY(0) rotate(0deg); /* Start at the top */
     transform-origin: bottom;
     opacity: 0.3;
 }
-
 @keyframes fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
     to {
         transform: translateY(120vh) rotate(360deg);
     }
