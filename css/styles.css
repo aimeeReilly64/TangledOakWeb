@@ -412,9 +412,9 @@ body {
 }
 .product-link img {
     width: 100%;
-    max-width: 150px;
+    max-width: 50px;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 1 / 1; /* Ensures square shape */
     border-radius: 10px;
     margin-bottom: 10px;
