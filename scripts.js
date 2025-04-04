@@ -41,9 +41,9 @@ function renderProducts(products) {
 
         productElement.innerHTML = `
             <img src="${product.image_url}" alt="${product.name || 'Product Image'}" class="product-image" />
-            <h2>${product.name || 'Unnamed Product'}</h2>
-            <p>${product.description || 'No description available.'}</p>
-            <p><strong>Price:</strong> ${price}</p>
+            <h2 class="product-title">${product.name || 'Unnamed Product'}</h2>
+            <p class="product-description">${product.description || 'No description available.'}</p>
+            <p class="product-price"><strong>Price:</strong> ${price}</p>
             <a href="${product.product_url}" class="button" target="_blank">View</a>
         `;
         container.appendChild(productElement);
@@ -113,21 +113,17 @@ function createLeaf() {
     const leaf = document.createElement('img');
     leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
     leaf.classList.add('leaf');
-
     // Random horizontal position
     leaf.style.left = `${Math.random() * 100}vw`;
 
     // Random animation duration and delay
     leaf.style.animationDuration = `${8 + Math.random() * 5}s, ${3 + Math.random() * 2}s`;
     leaf.style.animationDelay = `${Math.random() * 5}s`;
-
     leafContainer.appendChild(leaf);
-
     // Remove the leaf after it falls to keep DOM clean
     setTimeout(() => {
         leaf.remove();
     }, 15000);
-}
-
 // Generate a new leaf every 300ms
 setInterval(createLeaf, 300);
+}
