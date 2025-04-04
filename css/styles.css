@@ -405,6 +405,12 @@ body {
         font-size: 12px;
     }
 }
+
+.hours-text{
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #203a13;
+}
 /* Product Card Styling */
 .product-card {
     background: rgb(224, 215, 207);
