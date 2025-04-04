@@ -103,12 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const leafContainer = document.getElementById('leaf-container');
-
-// Optional: array of different leaf image paths
 const leafImages = [
-    'images/leaf1.png',
-    'images/leaf2.png',
-    'images/leaf3.png'
+    'views/images/leaf1.png',
+    'views/images/leaf2.png',
+    'views/images/leaf3.png'
 ];
 
 function createLeaf() {
