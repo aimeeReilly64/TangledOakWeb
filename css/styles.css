@@ -461,7 +461,9 @@ body {
 }
 
 /* View Button */
-.button {
+.products-link {
+    display: inline-block;
+    margin-bottom: 12px;
     background-color: #1f8f58;
     color: white;
     padding: 8px 16px;
