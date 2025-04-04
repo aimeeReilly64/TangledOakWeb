@@ -78,20 +78,22 @@ body {
 }
 
 .sidebar .side-nav-smaller {
-    position: absolute;
+    position: relative;
     left: 100%;
-    top: 0;
+    top: -40px;
     background-color: #abc29c;
     padding: 10px;
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: none;
-    z-index: 3000;
+
 }
 
 .sidebar .side-nav-small:hover > .side-nav-smaller,
 .sidebar .side-nav-small:focus-within > .side-nav-smaller {
     display: block;
+
+    transition: display 0.2s ease-in-out;
 }
 
 .sidebar .side-nav-smaller a {
