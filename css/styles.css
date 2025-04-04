@@ -405,14 +405,16 @@ body {
     width: 100%;
     max-width: 200px;
     text-align: center;
-    .product-container img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
 }
+
+
+.product-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 .product-grid {
     max-width: 1200px;
     margin: 0 auto 2rem auto;
