@@ -78,9 +78,9 @@ body {
 }
 
 .sidebar .side-nav-smaller {
-    position: relative;
+    position: absolute;
     left: 100%;
-    top: -40px;
+    top: -10px;
     background-color: #abc29c;
     padding: 10px;
     min-width: 150px;
@@ -186,7 +186,7 @@ body {
     background-image: url("views/images/logoTransp (2).png");
     background-repeat: repeat-x;
     background-position: center center;
-    background-size: contain; /* or use 'cover' for full scaling */
+    background-size: cover; /*contain*/
     opacity: 0.08;
     pointer-events: none;
     z-index: 0;
