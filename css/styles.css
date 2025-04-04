@@ -411,8 +411,8 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 .product-container img {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 100px;
+    max-height: 100px;
     border-radius: 10px;
     margin-bottom: 10px;
     transition: transform 0.3s ease-in-out;
@@ -425,7 +425,7 @@ body {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 3fr));
     gap: 20px;
     justify-items: center;
     padding: 20px;
