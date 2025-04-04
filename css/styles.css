@@ -395,7 +395,7 @@ body {
         font-size: 12px;
     }
 }
-.product-link {
+.product-container {
     background-color: #fff;
     border: 1px solid #d0c4b6;
     border-radius: 12px;
@@ -411,11 +411,8 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 .product-link img {
-    width: 100%;
     max-width: 50px;
-    height: auto;
-    object-fit: contain;
-    aspect-ratio: 1 / 1; /* Ensures square shape */
+    max-height: 50px;
     border-radius: 10px;
     margin-bottom: 10px;
     transition: transform 0.3s ease-in-out;
