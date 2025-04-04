@@ -460,23 +460,13 @@ body {
     margin-bottom: 12px;
 }
 
-/* Button */
-.product-button {
-    background-color: #2D5C47;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 /* Product Container Layout */
 #products-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 20px;
     justify-items: center;
-    padding: 24px 0;
+    padding: 20px 0;
 }
 
 /* Responsive Fixes */

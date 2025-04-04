@@ -46,7 +46,6 @@ function renderProducts(products) {
             <p><strong>Price:</strong> ${price}</p>
             <a href="${product.product_url}" class="button" target="_blank">View</a>
         `;
-
         container.appendChild(productElement);
     });
 }
@@ -56,7 +55,6 @@ function searchProducts(query) {
         (product.name || '').toLowerCase().includes(query.toLowerCase()) ||
         (product.description || '').toLowerCase().includes(query.toLowerCase())
     );
-
     renderProducts(filtered);
 }
 
