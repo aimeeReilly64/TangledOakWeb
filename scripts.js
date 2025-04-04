@@ -126,30 +126,8 @@ function createLeaf() {
     leaf.addEventListener('animationend', () => {
         leaf.classList.remove('falling');
     });
-    leaf.classList.add('falling');
-    // After falling, add a new leaf every 2 seconds
-    setTimeout(createLeaf, 2000);
-    // After 15 seconds, remove the leaf completely to save memory
-    setTimeout(() => {
-        leaf.remove();
-    })
-    // After 15 seconds, remove the leaf completely to save memory
-    setTimeout(() => {
-        leaf.remove();
-    }, 15000);
-
-// Initialize
-    // Remove the leaf after it falls to keep DOM clean
-    setTimeout(() => {
-        leaf.remove();
-    }, 15000);
-}
-
-// Start generating leaves every 300ms
-setInterval(createLeaf, 300);
-
 // Optionally generate the first one immediately
-createLeaf();
-
+    createLeaf();
+}
 
 // Remove the
