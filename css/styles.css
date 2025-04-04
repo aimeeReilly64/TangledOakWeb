@@ -425,9 +425,11 @@ body {
 
 .product-title{
     color: #2D5C47;
-    font-size: 1.1rem;
+    font-size: 12px;
+    font-weight: bold;
     margin-bottom: 4px;
 }
+
 .product-card:hover {
     transform: translateY(-5px);
 }
@@ -441,13 +443,6 @@ body {
     border-color: #2D5C47;
     border-width: 2px;
     margin-bottom: 10px;
-}
-
-/* Title */
-.product-card h3 {
-    margin: 8px 0;
-    font-size: 1.2rem;
-    font-weight: bold;
 }
 
 /* Description */
