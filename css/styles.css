@@ -410,7 +410,7 @@ body {
     transform: translateY(-4px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-.product-link img {
+.product-container img {
     max-width: 50px;
     max-height: 50px;
     border-radius: 10px;
