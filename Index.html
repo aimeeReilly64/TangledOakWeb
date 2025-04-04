@@ -6,9 +6,44 @@
     <title>The Tangled Oak + Craft Collective</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="scripts.js"></script>
+    <style>
+        .leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .leaf {
+            position: absolute;
+            top: -100px;
+            width: 40px;
+            opacity: 0.7;
+            animation: fall 10s linear infinite, sway 4s ease-in-out infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(120vh) rotate(360deg);
+            }
+        }
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+    </style>
 </head>
 <body>
-
+<!-- Leaf Animation Layer -->
+<div class="leaf-container">
+    <img src="views/images/leaf1.png" class="leaf" style="left: 5%; animation-delay: 0s;">
+    <img src="views/images/leaf2.png" class="leaf" style="left: 20%; animation-delay: 2s;">
+    <img src="views/images/leaf3.png" class="leaf" style="left: 35%; animation-delay: 4s;">
+    <img src="views/images/leaf4.png" class="leaf" style="left: 60%; animation-delay: 1s;">
+    <img src="views/images/leaf5.png" class="leaf" style="left: 80%; animation-delay: 3s;">
+</div>
     <img src="views/images/logoTransp%20(2).png" class="background-logo" id="logo.png" alt="The Tangled Oak + Craft Collective Logo">
 
 <!-- Hamburger Menu for Mobile -->
@@ -158,9 +193,8 @@
     <li><a href="https://the-tangled-oak-craft-collective.square.site/shop/she-keeps-bees/KNKU2OKSXMIMMA2WIRR3SPWK">She Keeps Bees</a></li>
 </ul>
 </div>
-<!-- Add this wrapper below the sidebar -->
+
 <div class="main-wrapper">
-    <!-- Header -->
         <!-- Header -->
         <div class="header">
             <a href="Index.html">
@@ -173,78 +207,64 @@
             <br/><br/>
         </div>
 <br/>
-<!-- Main Content -->
-<div class="main-content">
-    <br/>
-    <!-- Hero Section -->
-    <div class="context-box">
-        <h2>Discover Handmade Treasures, Crafted with Heart</h2><br/>
-        <div class="hero-img">
-            <img src="views/images/shopFront2.jpg" alt="picture of store front from the sidewalk" class="hero-img">
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <div class="main-content">
+
+            <!-- Hero Section -->
+            <div class="context-box">
+                <h2>Discover Handmade Treasures, Crafted with Heart</h2>
+                <div class="hero-image-row" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <img src="views/images/shopFront2.jpg" alt="Storefront from sidewalk" class="hero-img">
+                    <img src="views/images/shopFront3.jpg" alt="Interior shot of the shop" class="hero-img">
+                </div>
+                <div class="hero-text">Locally made artisanal goods, unique crafts, and one-of-a-kind finds.</div>
+                <a href="Shop.html" class="button">Shop Now</a>
+            </div>
+
+
+            <!-- Featured Vendors -->
+            <div class="context-box">
+                <h2>Featured Vendors</h2>
+                <img src="views/images/feature.png" alt="Featured Vendors in the store" class="feature-img">
+                <a href="VendorShop.html" class="button">Browse All Products</a>
+            </div>
+
+            <!-- About Section -->
+            <div class="context-box">
+                <h2>About Us</h2>
+                <p>Founded with a passion for craftsmanship,<br>
+                    The Tangled Oak + Craft Collective brings together talented artisans from North Bay and beyond.<br>
+                    Every product tells a story, celebrating the artistry and dedication of makers.
+                </p>
+                <a href="About.html" class="button">Learn More</a>
+            </div>
+
+            <!-- Hours & Location -->
+            <div class="context-box">
+                <h2>Hours of Operation</h2>
+                <p>
+                    Monday: 10 AM - 1 PM<br>
+                    Tuesday: CLOSED<br>
+                    Wednesday: 11 AM - 3 PM<br>
+                    Thursday: 10 AM - 1 PM<br>
+                    Friday: 11 AM - 3 PM<br>
+                    Saturday: 10 AM - 3 PM<br>
+                    Sunday: 12 AM - 3 PM
+                </p>
+                <h3>Where You Can Find Us</h3>
+                <p>
+                    150 Oak Street W<br>North Bay, ON<br>
+                    Email: store@tangledoak.ca<br>
+                    Phone: (705) 201-2300
+                </p>
+                <iframe class="map" height="450" style="border: 2px solid #203a13" loading="lazy" allowfullscreen
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.934228632341!2d-79.46534059999999!3d46.311143699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d29aa9cbd52da61%3A0x5ba29b1fbf8394f9!2s150%20Oak%20St%20W%2C%20North%20Bay%2C%20ON%20P1B%202S7!5e0!3m2!1sen!2sca!4v1742343151470!5m2!1sen!2sca">
+                </iframe>
+            </div>
+
         </div>
-        <div class="hero-text">Locally made artisanal goods, unique crafts, and one-of-a-kind finds.</div>
-        <a href="Shop.html" class="button">Shop Now</a>
     </div>
-
-    <!-- Featured Products -->
-    <div class="context-box">
-        <h2>Featured Vendors</h2>
-        <img src="views/images/feature.png" alt="Featured Vendors in the store" class="feature-img">
-        <a href="VendorShop.html" class="button">Browse All Products</a>
-    </div>
-
-    <!-- About Section -->
-    <div class="context-box">
-        <h2>About Us</h2>
-        <p>Founded with a passion for craftsmanship,<br />
-            The Tangled Oak + Craft Collective brings together talented artisans from North Bay and beyond.<br/>
-            Every product tells a story, celebrating the artistry and dedication of makers.</p>
-        <a href="About.html" class="button">Learn More</a>
-    </div>
-
-    <!-- Vendor Spotlight
-    <div class="context-box">
-        <h2>Vendor Spotlight</h2>
-        <div class="vendor">
-           <p> Meet Cheese and Stuffs, an artisan brand known for their handcrafted jams and jellies, made with locally sourced ingredients. Perfect for food lovers
-        </p>
-        <a href=" VendorProfile8.html" class="button">See Profile</a>"</div>
-        <a href="VendorProfileMain.html" class="button">Meet More Makers</a>
-    </div>
--->
-    <!-- Blog -->
-    <!-- Blog Section
-    <div class="context-box">
-        <h2>Blog</h2>
-        <h3>Latest Articles & Interviews</h3>
-        <a href="blog.html" class="buttonTwo">View All Blog Posts</a>
-    </div>-->
-    <!--Business Hours-->
-    <div class="context-box">
-        <h2>Hours of Operation</h2>
-        Monday: 10 AM - 1 PM<br>
-        Tuesday: CLOSED<br>
-        Wednesday: 11 AM - 3 PM<br>
-        Thursday: 10 AM - 1 PM<br>
-        Friday: 11 AM - 3 PM<br>
-        Saturday: 10 AM - 3 PM<br>
-        Sunday: 12 AM - 3 PM<br>
-
-        <h3>Where you can find us</h3>
-        <p>150 Oak Street W<br>North Bay, ON</p>
-        <p>Email: store@tangledoak.ca<br>Phone: (705) 201-2300</p>
-        <iframe style="border: 2px solid #203a13" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.934228632341!2d-79.46534059999999!3d46.311143699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d29aa9cbd52da61%3A0x5ba29b1fbf8394f9!2s150%20Oak%20St%20W%2C%20North%20Bay%2C%20ON%20P1B%202S7!5e0!3m2!1sen!2sca!4v1742343151470!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"allowfullscreen="" loading="lazy">
-        </iframe>
-    </div>
-
-    <!-- Upcoming Events
-    <div class="context-box">
-        <h2>Upcoming Events</h2>
-        <h3>Stay Tuned for Exciting Workshops & Craft Fairs!</h3>
-        <a href="events.html" class="buttonTwo">View All Events</a>
-    </div>-->
-
-</div>
 
 <!-- Footer -->
 <footer class="footer">

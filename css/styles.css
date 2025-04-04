@@ -20,13 +20,13 @@ body {
 /* Layout Container */
 /* ======================== */
 .main-content {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .main-wrapper {
     padding: 20px;
-    margin-left: 200px;
+    margin-left: 60px;
     max-width: 1000px;
     margin-right: auto;
 }
@@ -78,10 +78,11 @@ body {
 }
 
 .sidebar .side-nav-smaller {
-    position: absolute;
+    position: sticky;
     left: 100%;
     top: -10px;
     background-color: #abc29c;
+    z-index: auto;
     padding: 10px;
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -234,18 +235,28 @@ body {
 }
 
 
-/* ======================== */
-/* Hero & Images */
-/* ======================== */
-.hero-img {
-    width: 300px;
-    height: 370px;
-    border-radius: 5px;
-    border: 2px solid #2D5C47;
-    position: relative;
-    margin-top: 5px;
+.hero-image-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.hero-img {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid #2D5C47;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.03);
+}
+
 
 .feature-img {
     width: 100%;

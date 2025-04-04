@@ -64,6 +64,8 @@ function toggleSidebar() {
     const sidebar = document.querySelector(".sidebar");
     const isVisible = sidebar.style.display === "block";
     sidebar.style.display = isVisible ? "none" : "block";
+    sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle('visible');
 
     // Accessibility toggle
     const hamburger = document.getElementById("hamburger-menu");
