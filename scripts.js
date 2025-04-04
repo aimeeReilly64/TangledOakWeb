@@ -46,6 +46,7 @@ function renderProducts(products) {
             <p><strong>Price:</strong> ${price}</p>
             <a href="${product.product_url}" class="product-link" target="_blank">View Product</a>
         `;
+
         container.appendChild(productElement);
     });
 }
