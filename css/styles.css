@@ -1,6 +1,4 @@
-/* ======================== */
-/* Base Reset and Globals */
-/* ======================== */
+
 * {
     box-sizing: border-box;
 }
@@ -180,17 +178,18 @@ body {
 
 .background-logo {
     position: fixed; /* stays in place even when scrolling */
-    top: 0;
-    left: 0;
+    top: -10px;
+    left: -10px;
     width: 100vw;
     height: 200vh;
     background-image: url("views/images/logoTransp (2).png");
     background-repeat: repeat-x;
-    background-position: center center;
+    background-position: center;
     background-size: cover; /*contain*/
     opacity: 0.08;
     pointer-events: none;
-    z-index: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 
@@ -409,13 +408,20 @@ body {
 }
 /* Individual Product Styling */
 .product {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: rgba(236, 219, 212, 0.82);
+    border: 1px solid #dcd3c6;
     border-radius: 8px;
-    padding: 15px;
+    padding: 3px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 220px;
+    height: 400px;
 }
 
 .product:hover {
