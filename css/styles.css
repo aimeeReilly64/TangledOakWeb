@@ -405,6 +405,13 @@ body {
     width: 100%;
     max-width: 200px;
     text-align: center;
+    .product-container img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
 }
 .product-grid {
     max-width: 1200px;
@@ -416,13 +423,7 @@ body {
     transform: translateY(-4px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-.product-container img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+
 
 .product-description {
     font-size: 14px;
