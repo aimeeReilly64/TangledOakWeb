@@ -104,3 +104,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+const leafContainer = document.getElementById('leaf-container');
+
+// Optional: array of different leaf image paths
+const leafImages = [
+    'images/leaf1.png',
+    'images/leaf2.png',
+    'images/leaf3.png'
+];
+
+function createLeaf() {
+    const leaf = document.createElement('img');
+    leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
+    leaf.classList.add('leaf');
+
+    // Random horizontal position
+    leaf.style.left = `${Math.random() * 100}vw`;
+
+    // Random animation duration and delay
+    leaf.style.animationDuration = `${8 + Math.random() * 5}s, ${3 + Math.random() * 2}s`;
+    leaf.style.animationDelay = `${Math.random() * 5}s`;
+
+    leafContainer.appendChild(leaf);
+
+    // Remove the leaf after it falls to keep DOM clean
+    setTimeout(() => {
+        leaf.remove();
+    }, 15000);
+}
+
+// Generate a new leaf every 300ms
+setInterval(createLeaf, 300);
