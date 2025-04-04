@@ -425,7 +425,7 @@ body {
 
 .product-title{
     color: #2D5C47;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 4px;
 }
@@ -457,7 +457,7 @@ body {
 .product-price {
     font-weight: bold;
     font-size: 0.85rem;
-    color: #2D5C47;
+    color: #15260c;
     margin-bottom: 12px;
 }
 
