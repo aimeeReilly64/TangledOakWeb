@@ -434,6 +434,8 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
+    border-color: #2D5C47;
+    border-width: 1px;
     margin-bottom: 12px;
 }
 
@@ -459,7 +461,7 @@ body {
 }
 
 /* View Button */
-.view-button {
+.button {
     background-color: #1f8f58;
     color: white;
     padding: 8px 16px;
@@ -468,7 +470,7 @@ body {
     cursor: pointer;
     text-decoration: none;
 }
-.view-button:hover {
+.button:hover {
     background-color: #146c43;
 }
 
