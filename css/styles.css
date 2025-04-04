@@ -431,7 +431,7 @@ body {
 }
 
 .product-link img {
-    max-width: 150px; /* Controls logo size */
+    max-width: 50px; /* Controls logo size */
     width: 100%;
     height: auto;
     border-radius: 10px;
@@ -449,6 +449,6 @@ body {
 }
 @media (max-width: 768px) {
     .product-link img {
-        max-width: 120px;
+        max-width: 50px;
     }
 }
