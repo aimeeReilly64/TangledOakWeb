@@ -8,7 +8,18 @@
     <script src="scripts.js"></script>
 </head>
 <body>
-<div class="leaf-container">
+<!-- Leaf Animation Layer -->
+<div class="leaf-container" id="leaf-container">
+    <img src="views/images/leaf1.png" class="leaf" style="left: 5%; animation-delay: 0s;">
+    <img src="views/images/leaf2.png" class="leaf" style="left: 20%; animation-delay: 2s;">
+    <img src="views/images/leaf3.png" class="leaf" style="left: 35%; animation-delay: 4s;">
+    <img src="views/images/leaf4.png" class="leaf" style="left: 60%; animation-delay: 1s;">
+    <img src="views/images/leaf5.png" class="leaf" style="left: 80%; animation-delay: 3s;">
+    <img src="views/images/leaf6.png" class="leaf" style="left: 95%; animation-delay: 2s;">
+    <img src="views/images/leaf7.png" class="leaf" style="left: 5%; animation-delay: 3s;">
+    <img src="views/images/leaf8.png" class="leaf" style="left: 70%; animation-delay: 4s;">
+    <img src="views/images/leaf9.png" class="leaf" style="left: 100%; animation-delay: 1s;">
+    <img src="views/images/leaf10.png" class="leaf" style="left: 25%; animation-delay: 0s;">
 </div>
 <img src="views/images/logoTransp%20(2).png" class="background-logo" id="logo.png" alt="The Tangled Oak + Craft Collective Logo">
 
@@ -322,10 +333,6 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         fetchProducts();
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        createLeaf();
     });
 </script>
 

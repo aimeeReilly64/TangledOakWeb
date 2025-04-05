@@ -532,9 +532,8 @@ body {
     position: absolute;
     width: 10%;
     height: 10%;
-    animation-delay: calc(-0.5s * var(--i));
-    animation: fall calc(5s + 2s * var(--i)) linear infinite;
-    transform: translateY(0) rotate(0deg); /* Start at the top */
+    animation: fall 5s linear infinite;
+    transform: translateY(0) rotate(0deg);
     transform-origin: bottom;
     opacity: 0.3;
 }
