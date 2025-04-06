@@ -1,6 +1,3 @@
-
-let cachedProducts = [];
-
 async function fetchProducts() {
     try {
         const response = await fetch(API_URL);
