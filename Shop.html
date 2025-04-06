@@ -332,7 +332,7 @@
 <script src="scripts.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        fetchProducts().then(data => {
+        fetchProducts(data => {
             // Sort descending by updated_at
             const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
             cachedProducts = sorted;

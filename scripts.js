@@ -11,11 +11,19 @@ async function fetchProducts() {
         const products = await response.json();
         cachedProducts = products;
         renderProducts(products);
+        sortProducts(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         document.getElementById('products-container').innerHTML =
             '<p>⚠️ Failed to load products. Please try again later.</p>';
     }
+}
+
+function sortProducts(products) {
+    products.sort((a, b) => {
+        const sorted = products.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        return  sorted
+    });
 }
 
 function renderProducts(products) {
@@ -51,13 +59,6 @@ function renderProducts(products) {
     });
 }
 
-function searchProducts(query) {
-    const filtered = cachedProducts.filter(product =>
-        (product.name || '').toLowerCase().includes(query.toLowerCase()) ||
-        (product.description || '').toLowerCase().includes(query.toLowerCase())
-    );
-    renderProducts(filtered);
-}
 
 function toggleSidebar() {
     const sidebar = document.querySelector(".sidebar");
@@ -98,7 +99,12 @@ function createLeaf() {
         'views/images/leaf2.png',
         'views/images/leaf3.png',
         'views/images/leaf4.png',
-        'views/images/leaf5.png'
+        'views/images/leaf5.png',
+        'views/images/leaf6.png' ,
+        'views/images/leaf7.png',
+        'views/images/leaf8.png',
+        'views/images/leaf9.png',
+        'views/images/leaf10.png'
     ];
 
     const leaf = document.createElement('img');
