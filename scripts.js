@@ -1,4 +1,4 @@
-const API_URL = "https://tangledoakweb.onrender.com/products";
+
 let cachedProducts = [];
 
 async function fetchProducts() {
