@@ -4,20 +4,13 @@ let cachedProducts = [];
 async function fetchProducts() {
     try {
         const response = await fetch(API_URL);
-        response.json().then(response => response.json())
-            .then(data => {
-                // Sort descending by updated_at
-                const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-                cachedProducts = sorted;
-                renderProducts(sorted);
-            })
-            .catch(error => {
-                console.error("Error fetching products:", error);
-            });
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        // Handle network errors, timeouts, etc.
+
+        const products = await response.json();
+        cachedProducts = products;
+        renderProducts(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         document.getElementById('products-container').innerHTML =
@@ -41,6 +34,10 @@ function renderProducts(products) {
         const price = typeof product.price === 'number'
             ? `$${product.price.toFixed(2)} ${product.currency || ''}`.trim()
             : 'N/A';
+
+        const updatedDate = product.updated_at
+            ? new Date(product.updated_at).toLocaleString()
+            : 'Unknown';
 
 
         productElement.innerHTML = `
@@ -91,19 +88,17 @@ document.querySelectorAll(".side-nav-small").forEach(item => {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-    fetchProducts();
-
-    const searchInput = document.getElementById("search-input");
-    if (searchInput) {
-        searchInput.addEventListener("input", (e) => {
-            const query = e.target.value;
-            if (query.length >= 2) {
-                searchProducts(query);
-            } else {
-                renderProducts(cachedProducts); // Reset view if cleared
-            }
+    fetchProducts().then(data => {
+            // Sort descending by updated_at
+            const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+            cachedProducts = sorted;
+            renderProducts(sorted);
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            document.getElementById('products-container').innerHTML =
+                '<p>⚠️ Failed to load products. Please try again later.</p>';
         });
-    }
 });
 
 function createLeaf() {
