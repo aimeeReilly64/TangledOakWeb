@@ -88,17 +88,7 @@ document.querySelectorAll(".side-nav-small").forEach(item => {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-    fetchProducts().then(data => {
-            // Sort descending by updated_at
-            const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-            cachedProducts = sorted;
-            renderProducts(sorted);
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            document.getElementById('products-container').innerHTML =
-                '<p>⚠️ Failed to load products. Please try again later.</p>';
-        });
+    fetchProducts();
 });
 
 function createLeaf() {
