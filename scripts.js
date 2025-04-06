@@ -11,7 +11,6 @@ async function fetchProducts() {
         const products = await response.json();
         cachedProducts = products;
         renderProducts(products);
-        sortProducts(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         document.getElementById('products-container').innerHTML =
@@ -29,7 +28,13 @@ function sortProducts(products) {
 function renderProducts(products) {
     const container = document.getElementById('products-container');
     container.innerHTML = '';
-
+try{
+    sortProducts(products);
+}
+catch(error){
+    console.error('Error sorting products:', error);
+    container.innerHTML = '<p>���️ Failed to sort products. Please try again later.</p>';
+}
     if (!products.length) {
         container.innerHTML = '<p>No products available at the moment.</p>';
         return;
