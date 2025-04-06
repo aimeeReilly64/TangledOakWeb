@@ -16,25 +16,13 @@ async function fetchProducts() {
         document.getElementById('products-container').innerHTML =
             '<p>⚠️ Failed to load products. Please try again later.</p>';
     }
+
 }
 
-function sortProducts(products) {
-    products.sort((a, b) => {
-        const sorted = products.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-        return  sorted
-    });
-}
 
 function renderProducts(products) {
     const container = document.getElementById('products-container');
     container.innerHTML = '';
-try{
-    sortProducts(products);
-}
-catch(error){
-    console.error('Error sorting products:', error);
-    container.innerHTML = '<p>���️ Failed to sort products. Please try again later.</p>';
-}
     if (!products.length) {
         container.innerHTML = '<p>No products available at the moment.</p>';
         return;
@@ -52,14 +40,13 @@ catch(error){
             ? new Date(product.updated_at).toLocaleString()
             : 'Unknown';
 
-
         productElement.innerHTML = `
             <img src="${product.image_url}" alt="${product.name || 'Product Image'}" class="product-image" />
             <h2 class="product-title">${product.name || 'Unnamed Product'}</h2>
             <p class="product-description">${product.description || 'No description available.'}</p>
             <p class="product-price"><strong>Price:</strong> ${price}</p>
-            <a href="${product.product_url}" class="button" target="_blank">View</a>
-        `;
+            <a href="${product.product_url}" class="button" target="_blank">View</a>        
+`;
         container.appendChild(productElement);
     });
 }
