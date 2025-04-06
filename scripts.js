@@ -4,13 +4,20 @@ let cachedProducts = [];
 async function fetchProducts() {
     try {
         const response = await fetch(API_URL);
+        response.json().then(response => response.json())
+            .then(data => {
+                // Sort descending by updated_at
+                const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+                cachedProducts = sorted;
+                renderProducts(sorted);
+            })
+            .catch(error => {
+                console.error("Error fetching products:", error);
+            });
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const products = await response.json();
-        cachedProducts = products;
-        renderProducts(products);
+        // Handle network errors, timeouts, etc.
     } catch (error) {
         console.error('Error fetching products:', error);
         document.getElementById('products-container').innerHTML =
@@ -35,9 +42,6 @@ function renderProducts(products) {
             ? `$${product.price.toFixed(2)} ${product.currency || ''}`.trim()
             : 'N/A';
 
-        const updatedDate = product.updated_at
-            ? new Date(product.updated_at).toLocaleString()
-            : 'Unknown';
 
         productElement.innerHTML = `
             <img src="${product.image_url}" alt="${product.name || 'Product Image'}" class="product-image" />
